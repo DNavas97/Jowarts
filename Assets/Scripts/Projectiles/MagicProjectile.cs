@@ -5,8 +5,9 @@ public class MagicProjectile : MonoBehaviour
 {
     #region Private Variables
     
-    private Rigidbody m_Rigidbody;
-    private float m_Speed;
+    private Rigidbody _rigidbody;
+    private float _speed;
+    private int _damage = 10;
 
     private Player _ownPlayer;
     
@@ -16,7 +17,7 @@ public class MagicProjectile : MonoBehaviour
 
     private void Update()
     {
-        m_Rigidbody.velocity = transform.right * m_Speed;
+        _rigidbody.velocity = transform.right * _speed;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,6 +25,7 @@ public class MagicProjectile : MonoBehaviour
         var collidedPlayer = other.GetComponent<Player>();
         if(collidedPlayer == null || collidedPlayer == _ownPlayer) return;
             
+        collidedPlayer.TakeDamage(_damage);
         Destroy(gameObject);
     }
 
@@ -34,9 +36,9 @@ public class MagicProjectile : MonoBehaviour
     public void Initialize(Player player)
     {
         _ownPlayer = player;
-        TryGetComponent(out m_Rigidbody);
+        TryGetComponent(out _rigidbody);
         
-        m_Speed = 10.0f;
+        _speed = 10.0f;
         transform.SetParent(null);
     }
     

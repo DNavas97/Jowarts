@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerID _playerID;
     [SerializeField] private MovementController _movementController;
     [SerializeField] private MagicSpawner _magicSpawner;
+    [SerializeField] private HealthBar _healthBar;
+
+    private int _health = 100;
     
     public enum PlayerID
     {
@@ -36,5 +39,12 @@ public class Player : MonoBehaviour
     public void Fire()
     {
         _magicSpawner.Fire();
+    }
+
+    public void TakeDamage(int damage)
+    {
+        _health -= damage;
+        
+        _healthBar.UpdateHealthBar(_health);
     }
 }
