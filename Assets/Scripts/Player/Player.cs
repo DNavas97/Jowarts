@@ -4,13 +4,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region Private Variables
-        
+
+    private UIController _uiController;
+    
     [SerializeField] private PlayerID _playerID;
     [SerializeField] private MovementController _movementController;
     [SerializeField] private MagicSpawner _magicSpawner;
-    [SerializeField] private HealthBar _healthBar;
 
-    private int _health = 100;
+    [NonSerialized] public int Health = 100;
     
     public enum PlayerID
     {
@@ -24,6 +25,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        _uiController = UIController.Instance;
+        
         _movementController.Initialize(this);
         _magicSpawner.Initialize(this);
     }
@@ -43,8 +46,14 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        _health -= damage;
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            Health = 0;
+            _uiController.SetWinnerText(PlayerID.Player1.ToString());
+        }
         
-        _healthBar.UpdateHealthBar(_health);
+        _uiController.UpdatePlayerHealth(this);
     }
 }
