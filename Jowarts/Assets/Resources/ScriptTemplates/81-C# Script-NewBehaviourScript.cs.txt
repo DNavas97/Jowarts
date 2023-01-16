@@ -1,0 +1,37 @@
+using UnityEngine;
+
+    #ROOTNAMESPACEBEGIN#
+
+namespace #NAMESPACE#
+{
+    /// <summary>
+    /// TODO: Fill class description
+    /// </summary>  
+    public class #SCRIPTNAME# : MonoBehaviour
+    {
+        #region Dependency Injection
+        
+        #endregion
+        
+        #region Private Variables
+        
+        #endregion
+        
+        #region Public Variables
+        
+        #endregion
+        
+        #region Events 
+        
+        #endregion
+        
+        #region Unity LifeCycle
+        
+        #endregion
+        
+        #region Utility Methods
+        
+        #endregion
+    }
+}
+#ROOTNAMESPACEEND#
