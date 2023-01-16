@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         _gameController = gc;
         
         _movementController.Initialize(this);
-        _magicSpawner.Initialize(this); 
+        _magicSpawner.Initialize(this);
     }
     
     public PlayerID GetPlayerID() => _playerID;
