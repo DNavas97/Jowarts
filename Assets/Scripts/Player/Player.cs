@@ -5,7 +5,9 @@ public class Player : MonoBehaviour
 {
     #region Private Variables
 
-    private UIController _uiController;
+    private GameController _gameController;
+    private CharacterSO _characterSo;
+    private HouseSO _houseSo;
     
     [SerializeField] private PlayerID _playerID;
     [SerializeField] private MovementController _movementController;
@@ -22,27 +24,22 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Unity LifeCycle
-
-    private void Start()
-    {
-        _uiController = UIController.Instance;
-        
-        _movementController.Initialize(this);
-        _magicSpawner.Initialize(this);
-    }
-
+    
     #endregion
 
     #region Utility Methods
 
+    public void Initialize(GameController gc)
+    {
+        _gameController = gc;
+        
+        _movementController.Initialize(this);
+        _magicSpawner.Initialize(this); 
+    }
+    
     public PlayerID GetPlayerID() => _playerID;
 
-    #endregion
-
-    public void Fire()
-    {
-        _magicSpawner.Fire();
-    }
+    public void Fire() => _magicSpawner.Fire();
 
     public void TakeDamage(int damage)
     {
@@ -51,9 +48,13 @@ public class Player : MonoBehaviour
         if (Health <= 0)
         {
             Health = 0;
-            _uiController.SetWinnerText(PlayerID.Player1.ToString());
+            _gameController.OnGameEnd(this);
         }
         
-        _uiController.UpdatePlayerHealth(this);
+        _gameController.OnPlayerTakeHit(this);
     }
+    
+    #endregion
+
+
 }

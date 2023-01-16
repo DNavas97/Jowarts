@@ -1,29 +1,19 @@
-using System;
-using TMPro;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
     #region Public Variables
 
-    public static UIController Instance;
-
     #endregion
     
     #region Private Variables
 
-    [SerializeField] private TextMeshProUGUI winnerText;
+    [SerializeField] private GameOverUI _gameOverUI;
     [SerializeField] private HealthBar player1Bar, player2Bar;
 
     #endregion
 
     #region Unity LifeCycle
-
-    private void Awake()
-    {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
-    }
 
     #endregion
 
@@ -37,9 +27,9 @@ public class UIController : MonoBehaviour
         healthBar.UpdateHealthBar(health);
     }
 
-    public void SetWinnerText(string winnerName)
+    public void OnGameEnd(Player winner)
     {
-        winnerText.text = "Gana " + winnerName;
+        _gameOverUI.ShowWithWinner(winner);
     }
 
     #endregion

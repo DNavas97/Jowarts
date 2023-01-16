@@ -21,9 +21,7 @@ public class MovementController : MonoBehaviour
     #region Unity LifeCycle
 
     private void Awake() => TryGetComponent(out _controller);
-
-
-
+    
     private void Update()
     {
         InputHandler();
