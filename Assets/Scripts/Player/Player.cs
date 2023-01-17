@@ -4,13 +4,16 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region Private Variables
-        
+
+    private GameController _gameController;
+    private CharacterSO _characterSo;
+    private HouseSO _houseSo;
+    
     [SerializeField] private PlayerID _playerID;
     [SerializeField] private MovementController _movementController;
     [SerializeField] private MagicSpawner _magicSpawner;
-    [SerializeField] private HealthBar _healthBar;
 
-    private int _health = 100;
+    [NonSerialized] public int Health = 100;
     
     public enum PlayerID
     {
@@ -21,30 +24,37 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Unity LifeCycle
-
-    private void Start()
-    {
-        _movementController.Initialize(this);
-        _magicSpawner.Initialize(this);
-    }
-
+    
     #endregion
 
     #region Utility Methods
 
+    public void Initialize(GameController gc)
+    {
+        _gameController = gc;
+        
+        _movementController.Initialize(this);
+        _magicSpawner.Initialize(this);
+    }
+    
     public PlayerID GetPlayerID() => _playerID;
 
-    #endregion
-
-    public void Fire()
-    {
-        _magicSpawner.Fire();
-    }
+    public void Fire() => _magicSpawner.Fire();
 
     public void TakeDamage(int damage)
     {
-        _health -= damage;
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            Health = 0;
+            _gameController.OnGameEnd(this);
+        }
         
-        _healthBar.UpdateHealthBar(_health);
+        _gameController.OnPlayerTakeHit(this);
     }
+    
+    #endregion
+
+
 }

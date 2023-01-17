@@ -37,8 +37,10 @@ public class MagicProjectile : MonoBehaviour
     {
         _ownPlayer = player;
         TryGetComponent(out _rigidbody);
+
+        var speedDirectionMultiplier = player.GetPlayerID() == Player.PlayerID.Player1 ? 1 : -1;
+        _speed = 15.0f * speedDirectionMultiplier;
         
-        _speed = 10.0f;
         transform.SetParent(null);
     }
     
