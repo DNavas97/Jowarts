@@ -13,6 +13,9 @@ public class FightGameController : MonoBehaviour
     [SerializeField] private Player _player1, _player2;
     [SerializeField] private FightUIController fightUIController;
 
+    private WizardSO _player1Wizard, _player2Wizard;
+    private WandSO _player1Wand, _player2Wand;
+
     #endregion
 
     #region Unity LifeCycle
@@ -31,8 +34,17 @@ public class FightGameController : MonoBehaviour
 
     private void Initialize()
     {
-        _player1.Initialize(this);
-        _player2.Initialize(this);
+        var data = PersistentData.Instance;
+        
+        _player1Wizard = data.WizardP1;
+        _player2Wizard = data.WizardP2;
+        _player1Wand = data.WandP1;
+        _player2Wand = data.WandP2;
+        
+        _player1.Initialize(this, _player1Wizard, _player1Wand);
+        _player2.Initialize(this, _player2Wizard, _player2Wand);
+        
+        fightUIController.Initialize(_player1Wizard, _player2Wizard);
     }
     
     public void OnPlayerTakeHit(Player player) => fightUIController.UpdatePlayerHealth(player);

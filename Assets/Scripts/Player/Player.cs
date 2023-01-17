@@ -30,9 +30,11 @@ public class Player : MonoBehaviour
 
     #region Utility Methods
 
-    public void Initialize(FightGameController gc)
+    public void Initialize(FightGameController gc, WizardSO wizard, WandSO wand)
     {
         _fightGameController = gc;
+        _wizardSo = wizard;
+        _wandSo = wand;
         
         _movementController.Initialize(this);
         _magicSpawner.Initialize(this);

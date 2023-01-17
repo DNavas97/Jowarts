@@ -1,12 +1,14 @@
-using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
     #region Private Variables
 
-    [SerializeField] private Image characterIcon;
+    [SerializeField] private Image wizardIcon;
     [SerializeField] private Transform healthContent;
+    [SerializeField] private TextMeshProUGUI wizardNameText;
     
     #endregion
 
@@ -20,6 +22,12 @@ public class HealthBar : MonoBehaviour
     {
         var healthSize = health / 100f;
         healthContent.localScale = new Vector3(healthSize, 1, 1);
+    }
+
+    public void UpdatePlayerInfo(WizardSO wizard)
+    {
+        wizardNameText.text = wizard.wizardName.ToString();
+        wizardIcon.sprite = wizard.wizardIcon;
     }
 
     #endregion

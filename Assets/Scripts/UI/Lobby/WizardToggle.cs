@@ -12,13 +12,13 @@ public class WizardToggle : MonoBehaviour
     [SerializeField] private Button _button;
 
     private WizardSO _wizard;
-    private Player.PlayerID _selectedByPlayer;
+    private PlayerID _selectedByPlayer;
     
     #endregion
 
     #region Events
 
-    public static UnityEvent<WizardSO> OnWizardSelected = new UnityEvent<WizardSO>();
+    public static UnityEvent<KeyValuePair<PlayerID, WizardSO>> OnWizardSelected = new UnityEvent<KeyValuePair<PlayerID, WizardSO>>();
     public static UnityEvent<KeyValuePair<PlayerID, WizardToggle>> OnToggleSelected = new UnityEvent<KeyValuePair<PlayerID, WizardToggle>>();
 
     #endregion
@@ -48,8 +48,12 @@ public class WizardToggle : MonoBehaviour
     {
         if(!value) _toggleBorder.color = Color.black;
         else       _toggleBorder.color = _selectedByPlayer == PlayerID.Player1 ? Color.red : Color.blue;
-        
-        if (value) OnWizardSelected.Invoke(_wizard);
+
+        if (value)
+        {
+            var keyValuePair = new KeyValuePair<PlayerID, WizardSO>(_selectedByPlayer, _wizard);
+            OnWizardSelected.Invoke(keyValuePair);
+        }
         else _selectedByPlayer = PlayerID.None;
     }
 

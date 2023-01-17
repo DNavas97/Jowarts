@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using PlayerID = Player.PlayerID; 
 
 namespace UI.Lobby
 {
@@ -11,16 +13,16 @@ namespace UI.Lobby
         [SerializeField] private Transform _wizardLayout;
         [SerializeField] private GameObject _wizardToggle;
         [SerializeField] private PlayerContent _player1Content, _player2Content;
-
-        private WizardDB _wizardDB;
-        private WandDB _wandDB;
-
-        private const string CharacterDBPath = "SO_WizardDB";
-        private const string WandDBPath = "SO_WandDB";
-
-        private int _player1Selection, _player2Selection = 0;
+        
+        private int _player1SelectedWizard = 0;
+        private int _player2SelectedWizard = 1;
+        private int _player1SelectedWand, _player2SelectedWand = 0;
         
         private bool _canP1Input, _canP2Input;
+        private bool _lockedWizardP1, _lockedWizardP2, _lockedWandP1, _lockedWandP2;
+
+        private List<WandSO> _wandDB;
+        private List<WizardSO> _wizardDB;
         
         #endregion
 
@@ -28,98 +30,149 @@ namespace UI.Lobby
 
         private void Start()
         {
-            _wizardDB = Resources.Load<WizardDB>(CharacterDBPath);
-            _wandDB = Resources.Load<WandDB>(WandDBPath);
-            
+            _wizardDB = PersistentData.Instance.GetWizardDB();
+            _wandDB = PersistentData.Instance.GetWandDB();
+
             LoadWizards();
             SuscribeToEvents();
+
+            UpdateToggleHandler(PlayerID.Player1, _player1SelectedWizard);
+            UpdateToggleHandler(PlayerID.Player2, _player2SelectedWizard);
             
-            _player1Content.Initialize(_wandDB);
-            _player2Content.Initialize(_wandDB);
+            _player1Content.UpdateWand(_wandDB[_player1SelectedWand]);
+            _player2Content.UpdateWand(_wandDB[_player2SelectedWand]);
             
             _canP1Input = _canP2Input = true;
         }
 
         private void Update()
         {
-            HandleInputs();
+            HandleSelectionInputs();
+            HandleSubmitInput();
+            CheckForMatchStart();
         }
 
         #endregion
 
         #region Utility Methods
 
-        private void HandleInputs()
+        private void HandleSelectionInputs()
         {
             var horizontalP1Input = Input.GetAxis("HorizontalP1");
             var horizontalP2Input = Input.GetAxis("HorizontalP2");
 
-            
             if (horizontalP1Input != 0 && _canP1Input)
             {
-                StartCoroutine(InputDelay(Player.PlayerID.Player1));
-
-                if (horizontalP1Input > 0)
-                {
-                    _player1Selection++;
-                    if (_player1Selection > _wizardDB.wizards.Count -1) _player1Selection = 0;
-                    
-                    if (_togglehandler.IsSelected(_player1Selection)) _player1Selection++;
-                    if (_player1Selection > _wizardDB.wizards.Count -1) _player1Selection = 0;
-                }
-                else
-                {
-                    _player1Selection--;
-                    if (_player1Selection < 0) _player1Selection = _wizardDB.wizards.Count -1;
-                    
-                    if (_togglehandler.IsSelected(_player1Selection)) _player1Selection--;
-                    if (_player1Selection < 0) _player1Selection = _wizardDB.wizards.Count -1;
-                }
-
-                UpdateToggleHandler(Player.PlayerID.Player1, _player1Selection);
+                if (!_lockedWizardP1)   WizardSelectionHorizontalHandle(PlayerID.Player1, horizontalP1Input, _player1SelectedWizard);
+                else if(!_lockedWandP1) WandSelectionHandle(PlayerID.Player1, horizontalP1Input, _player1SelectedWand, _player1Content);
             }
 
             if (horizontalP2Input != 0 && _canP2Input)
             {
-                StartCoroutine(InputDelay(Player.PlayerID.Player2));
-                
-                if (horizontalP2Input > 0)
-                {
-                    _player2Selection++;
-                    if (_player2Selection > _wizardDB.wizards.Count -1) _player2Selection = 0;
-
-                    if (_togglehandler.IsSelected(_player2Selection)) _player2Selection++;
-                    if (_player2Selection > _wizardDB.wizards.Count -1) _player2Selection = 0;
-                }
-                else
-                {
-                    _player2Selection--;
-                    if (_player2Selection < 0) _player2Selection = _wizardDB.wizards.Count -1;
-                    
-                    if (_togglehandler.IsSelected(_player2Selection)) _player2Selection--;
-                    if (_player2Selection < 0) _player2Selection = _wizardDB.wizards.Count -1;
-                }
-                
-                UpdateToggleHandler(Player.PlayerID.Player2, _player2Selection);
+                if (!_lockedWizardP2)    WizardSelectionHorizontalHandle(PlayerID.Player2, horizontalP2Input, _player2SelectedWizard);
+                else if (!_lockedWandP2) WandSelectionHandle(PlayerID.Player2, horizontalP2Input, _player2SelectedWand, _player2Content);
             }
         }
-
-        private IEnumerator InputDelay(Player.PlayerID id)
+        
+        private void HandleSubmitInput()
         {
-            if (id == Player.PlayerID.Player1) _canP1Input = false;
-            else                               _canP2Input = false;
+            if (Input.GetButtonDown("JumpP1"))
+            {
+                if (!_lockedWizardP1)
+                {
+                    _player1Content.OnWizardFixed();
+                    _lockedWizardP1 = true;
+                }
+                else if (!_lockedWandP1)
+                {
+                    _player1Content.OnWandFixed();
+                    _lockedWandP1 = true;
+                }
+            }
             
-            yield return new WaitForSecondsRealtime(0.15f);
-            
-            if (id == Player.PlayerID.Player1) _canP1Input = true;
-            else                               _canP2Input = true;
+            if(Input.GetButtonDown("JumpP2"))
+            {
+                if (!_lockedWizardP2)
+                {
+                    _player2Content.OnWizardFixed();
+                    _lockedWizardP2 = true;
+                }
+                else if (!_lockedWandP2)
+                {
+                    _player2Content.OnWandFixed();
+                    _lockedWandP2 = true;
+                }
+            }
+        }
+        
+        private void WizardSelectionHorizontalHandle(PlayerID playerId, float input, int currentSelection)
+        {
+            StartCoroutine(InputDelay(playerId));
+
+            if (input > 0)
+            {
+                currentSelection++;
+                if (currentSelection > _wizardDB.Count -1) currentSelection = 0;
+                
+                if (_togglehandler.IsSelected(currentSelection)) currentSelection++;
+                if (currentSelection > _wizardDB.Count -1) currentSelection = 0;
+            }
+            else
+            {
+                currentSelection--;
+                if (currentSelection < 0) currentSelection = _wizardDB.Count -1;
+                
+                if (_togglehandler.IsSelected(currentSelection)) currentSelection--;
+                if (currentSelection < 0) currentSelection = _wizardDB.Count -1;
+            }
+
+            if (playerId == PlayerID.Player1) _player1SelectedWizard = currentSelection;
+            else                              _player2SelectedWizard = currentSelection;
+
+            UpdateToggleHandler(playerId, currentSelection);
         }
 
-        private void UpdateToggleHandler(Player.PlayerID playerID, int selectionID) => _togglehandler.Select(playerID, selectionID);
+        private void WandSelectionHandle(PlayerID playerID, float input, int currentSelection, PlayerContent playerContent)
+        {
+            StartCoroutine(InputDelay(playerID));
+            
+            if (input > 0)
+            {
+                currentSelection++;
+                if (currentSelection > _wandDB.Count -1) currentSelection = 0;
+                
+                playerContent.OnRightButtonClicked();
+            }
+            else
+            {
+                currentSelection--;
+                if (currentSelection < 0) currentSelection = _wandDB.Count -1;
+                
+                playerContent.OnLeftButtonClicked();
+            }
+
+            if (playerID == PlayerID.Player1) _player1SelectedWand = currentSelection;
+            else                              _player2SelectedWand = currentSelection;
+            
+            playerContent.UpdateWand(_wandDB[currentSelection]);
+        }
+        
+        private IEnumerator InputDelay(PlayerID id)
+        {
+            if (id == PlayerID.Player1) _canP1Input = false;
+            else                        _canP2Input = false;
+            
+            yield return new WaitForSecondsRealtime(0.2f);
+            
+            if (id == PlayerID.Player1) _canP1Input = true;
+            else                        _canP2Input = true;
+        }
+
+        private void UpdateToggleHandler(PlayerID playerID, int selectionID) => _togglehandler.Select(playerID, selectionID);
 
         private void LoadWizards()
         {
-            foreach (var wizard in _wizardDB.wizards)
+            foreach (var wizard in _wizardDB)
             {
                 var wizardToggle = Instantiate(_wizardToggle, _wizardLayout).GetComponent<WizardToggle>();
 
@@ -136,11 +189,33 @@ namespace UI.Lobby
             WizardToggle.OnWizardSelected.AddListener(OnWizardSelected);
         }
 
-        private void OnWizardSelected(WizardSO wizard)
+        private void OnWizardSelected(KeyValuePair<PlayerID, WizardSO> valuePair)
         {
-            _player1Content.UpdatePlayerContent(wizard);
+            switch (valuePair.Key)
+            {
+                case PlayerID.Player1:
+                    _player1Content.UpdatePlayerContent(valuePair.Value);
+                    break;
+                case PlayerID.Player2:
+                    _player2Content.UpdatePlayerContent(valuePair.Value);
+                    break;
+                case PlayerID.None:
+                default:
+                    Debug.Log("No Player Selected");
+                break;
+            }
+        }
+        
+        private void CheckForMatchStart()
+        {
+            if(_lockedWizardP1 && _lockedWizardP2 && _lockedWandP1 && _lockedWandP2) OnMatchSettedUp();
         }
 
+        private void OnMatchSettedUp()
+        {
+            PersistentData.Instance.SetMatchData(_player1SelectedWizard, _player2SelectedWizard, _player1SelectedWand, _player2SelectedWand);
+        }
+        
         #endregion
     }
 }
