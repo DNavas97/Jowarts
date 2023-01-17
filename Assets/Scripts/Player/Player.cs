@@ -56,7 +56,9 @@ public class Player : MonoBehaviour
         
         _fightGameController.OnPlayerTakeHit(this);
     }
-    
+
+    public WizardSO GetWizard() => _wizardSo;
+
     #endregion
 
 

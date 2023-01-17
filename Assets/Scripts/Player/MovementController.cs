@@ -11,6 +11,7 @@ public class MovementController : MonoBehaviour
     private Vector3 _velocity;
     private CharacterController _characterController;
     private Player _player;
+    private bool _gameEnded = false;
 
     private string _jumpButton, _horizontalButton, _fireButton;
     
@@ -18,7 +19,11 @@ public class MovementController : MonoBehaviour
 
     #region Unity LifeCycle
 
-    private void Awake() => TryGetComponent(out _characterController);
+    private void Awake()
+    {
+        TryGetComponent(out _characterController);
+        FightGameController.OnGameEnded.AddListener(OnGameEnd);
+    }
 
     private void Update() => InputHandler();
     
@@ -38,6 +43,8 @@ public class MovementController : MonoBehaviour
     
     private void InputHandler()
     {
+        if(_gameEnded) return;
+        
         JumpHandler();
         MovementHandler();
         FireHandler();
@@ -72,6 +79,8 @@ public class MovementController : MonoBehaviour
         _characterController.Move(finalVector * _playerSpeed * Time.deltaTime);
         _characterController.Move(_velocity * Time.deltaTime);
     }
+
+    private void OnGameEnd() => _gameEnded = true;
 
     #endregion
 }

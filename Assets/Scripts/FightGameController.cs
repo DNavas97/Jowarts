@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class FightGameController : MonoBehaviour
 {
     #region Public Variables
 
     public static FightGameController Instance;
+    public static UnityEvent OnGameEnded = new UnityEvent();
 
     #endregion
     
@@ -23,7 +26,7 @@ public class FightGameController : MonoBehaviour
     private void Awake()
     {
         if (Instance != null) Instance = this;
-        else Destroy(gameObject);
+        else Destroy(this);
         
         Initialize();
     }
@@ -53,8 +56,9 @@ public class FightGameController : MonoBehaviour
     {
         var winner = loser == _player1 ? _player2 : _player1;
         
+        OnGameEnded.Invoke();
         fightUIController.OnGameEnd(winner);
     }
-    
+
     #endregion
 }

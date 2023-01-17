@@ -53,7 +53,7 @@ public class PersistentData : MonoBehaviour
         WandP1 = _wandDB.wands[wandP1];
         WandP2 = _wandDB.wands[wandP2];
         
-        SceneManager.LoadScene("FightScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("PS_Loading", LoadSceneMode.Single);
     }
 
     public List<WizardSO> GetWizardDB() => _wizardDB.wizards;
