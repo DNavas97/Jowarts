@@ -44,8 +44,10 @@ public class PlayerContent : MonoBehaviour
     }
 
     public void OnWizardFixed() => _rightGroupCanvas.alpha = _leftGroupCanvas.alpha = 1;
+    public void OnWizardUnfixed() => _rightGroupCanvas.alpha = _leftGroupCanvas.alpha = 0;
     
     public void OnWandFixed() => _rightGroupCanvas.alpha = _leftGroupCanvas.alpha = 0;
+    public void OnWandUnfixed() => _rightGroupCanvas.alpha = _leftGroupCanvas.alpha = 1;
 
     #endregion
 }

@@ -49,6 +49,7 @@ namespace UI.Lobby
         {
             HandleSelectionInputs();
             HandleSubmitInput();
+            HandleBackInput();
             CheckForMatchStart();
         }
 
@@ -101,6 +102,37 @@ namespace UI.Lobby
                 {
                     _player2Content.OnWandFixed();
                     _lockedWandP2 = true;
+                }
+            }
+        }        
+        
+        private void HandleBackInput()
+        {
+            if (Input.GetButtonDown("ShieldP1"))
+            {
+                if (_lockedWandP1)
+                {
+                    _lockedWandP1 = false;
+                    _player1Content.OnWandUnfixed();
+                }
+                else if(_lockedWizardP1)
+                {
+                    _lockedWizardP1 = false;
+                    _player1Content.OnWizardUnfixed();
+                }
+            }
+            
+            if(Input.GetButtonDown("ShieldP2"))
+            {
+                if (_lockedWandP2)
+                {
+                    _lockedWandP2 = false;
+                    _player2Content.OnWandUnfixed();
+                }
+                else if(_lockedWizardP2)
+                {
+                    _lockedWizardP2 = false;
+                    _player2Content.OnWizardUnfixed();
                 }
             }
         }
