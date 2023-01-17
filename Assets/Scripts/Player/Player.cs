@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     
     public enum PlayerID
     {
+        None    = -1,
         Player1 = 0,
         Player2 = 1
     }
