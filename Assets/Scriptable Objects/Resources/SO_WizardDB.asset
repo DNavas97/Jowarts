@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71b10f10755a254a95fa3715077e76f, type: 3}
+  m_Name: SO_WizardDB
+  m_EditorClassIdentifier: 
+  wizards:
+  - {fileID: 11400000, guid: 866bedfbbf37f9049a6a47aaaedb4d68, type: 2}
+  - {fileID: 11400000, guid: afa86060295a4364cb102beadac91638, type: 2}
+  - {fileID: 11400000, guid: 67f00398fb68bfc4b85c905245a95d4e, type: 2}
+  - {fileID: 11400000, guid: 36744906afd058f448a296f7275dc77f, type: 2}
+  - {fileID: 11400000, guid: a2a4531601b97e14c8503ac5a5a7de70, type: 2}
+  - {fileID: 11400000, guid: 7f0b9f4111d304442a27c8086b960655, type: 2}
+  - {fileID: 11400000, guid: 3051dfd6dd3535e4fa1aa1bb7a596425, type: 2}
+  - {fileID: 11400000, guid: 3a44a0a11d1ce9c4fad4773bcf08a2b4, type: 2}

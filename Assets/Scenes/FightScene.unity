@@ -1622,7 +1622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player1: {fileID: 1666382574}
   _player2: {fileID: 237241856}
-  _uiController: {fileID: 207395564}
+  fightUIController: {fileID: 207395564}
 --- !u!114 &1666382574 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4392213805051672190, guid: d9158c183ee4dcd4f80d264a73b826f6, type: 3}

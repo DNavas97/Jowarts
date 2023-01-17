@@ -5,9 +5,9 @@ public class Player : MonoBehaviour
 {
     #region Private Variables
 
-    private GameController _gameController;
-    private CharacterSO _characterSo;
-    private HouseSO _houseSo;
+    private FightGameController _fightGameController;
+    private WizardSO _wizardSo;
+    private WandSO _wandSo;
     
     [SerializeField] private PlayerID _playerID;
     [SerializeField] private MovementController _movementController;
@@ -29,9 +29,9 @@ public class Player : MonoBehaviour
 
     #region Utility Methods
 
-    public void Initialize(GameController gc)
+    public void Initialize(FightGameController gc)
     {
-        _gameController = gc;
+        _fightGameController = gc;
         
         _movementController.Initialize(this);
         _magicSpawner.Initialize(this);
@@ -48,10 +48,10 @@ public class Player : MonoBehaviour
         if (Health <= 0)
         {
             Health = 0;
-            _gameController.OnGameEnd(this);
+            _fightGameController.OnGameEnd(this);
         }
         
-        _gameController.OnPlayerTakeHit(this);
+        _fightGameController.OnPlayerTakeHit(this);
     }
     
     #endregion
