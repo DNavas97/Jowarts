@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Persistent_Data;
 using UnityEngine;
 
@@ -17,12 +18,14 @@ public class Player : MonoBehaviour
     [NonSerialized] public int CurrentHealth;
     [NonSerialized] public int MaxHealth;
     
-    private float _fireCooldown, _shieldCooldown, _playerSpeed, _jumpForce, _projectileSpeed, _instaKillProb,
+    private float _fireCooldown, _shieldCooldown, _playerSpeed, _jumpForce, _projectileSpeed,
                   _projectileSize, _shieldHeal, _projectileHeal, _poisonDuration;
     
-    private int _projectileDamage, _resurrections, _poisonDamage;
+    private int _projectileDamage, _resurrections, _poisonDamage, _instaKillProb;
     
     private bool  _canReflect;
+
+    private Coroutine _poisonCoroutine;
     
     public enum PlayerID
     {
@@ -92,7 +95,16 @@ public class Player : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             CurrentHealth = 0;
-            _fightGameController.OnGameEnd(this);
+
+            if (_resurrections > 0)
+            {
+                _resurrections--;
+                Heal(MaxHealth/2);
+            }
+            else
+            {
+                _fightGameController.OnGameEnd(this);    
+            }
         }
         
         _fightGameController.OnPlayerHealthUpdated(this);
@@ -193,6 +205,26 @@ public class Player : MonoBehaviour
         var newHealth = CurrentHealth + amount;
         CurrentHealth = newHealth > MaxHealth ? MaxHealth : newHealth;
         _fightGameController.OnPlayerHealthUpdated(this);
+    }
+
+
+    public void GetPoisoned(int damage)
+    {
+        if(_poisonCoroutine != null) StopCoroutine(_poisonCoroutine);
+        _poisonCoroutine = StartCoroutine(OnPoison(damage));
+    }
+
+    private IEnumerator OnPoison(int damage)
+    {
+        var duration = GlobalParams.PoisonDuration;
+        var damagePerSecond = (int)(damage / duration);
+
+        while (duration > 0)
+        {
+            yield return new WaitForSecondsRealtime(1f);
+            TakeDamage(damagePerSecond);
+            duration--;
+        }
     }
 
     #endregion

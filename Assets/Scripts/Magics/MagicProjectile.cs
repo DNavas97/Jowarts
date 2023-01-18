@@ -2,13 +2,20 @@ using UnityEngine;
 
 public class MagicProjectile : MonoBehaviour
 {
+    #region Public Variables
+
+    #endregion
     #region Private Variables
     
     private Rigidbody _rigidbody;
     private float _speed;
     private int _damage = 10;
+    private bool _instaKill = false;
+    private int _poisonDamage;
+    private float _healMultiplier;
 
     private Player.PlayerID _playerID;
+    private Player _ownPlayer;
     
     #endregion
 
@@ -50,16 +57,26 @@ public class MagicProjectile : MonoBehaviour
     {
         var collidedPlayer = other.GetComponent<Player>();
         if(collidedPlayer == null || collidedPlayer.GetPlayerID() == _playerID) return;
-            
-        collidedPlayer.TakeDamage(_damage);
+        
+        if(_poisonDamage != 0) collidedPlayer.GetPoisoned(_poisonDamage);
+        if (_healMultiplier > 0)
+        {
+            var healAmount = (int)(_damage * _healMultiplier);
+            _ownPlayer.Heal(healAmount);
+        }
+        var damage = _instaKill ? 9999 : _damage;
+        collidedPlayer.TakeDamage(damage);
         Destroy(gameObject);
     }
     
-    public void Initialize(Player.PlayerID player, int damage, float speed, float instaKillProb, int posionDamage)
+    public void Initialize(Player player, int damage, float speed, int instaKillProb, int posionDamage, float healMultiplier)
     {
         _damage = damage;
-        _playerID = player;
+        _ownPlayer = player;
+        _playerID = _ownPlayer.GetPlayerID();
         _speed = speed;
+        _poisonDamage = posionDamage;
+        _healMultiplier = healMultiplier;
         
         TryGetComponent(out _rigidbody);
 
@@ -67,6 +84,11 @@ public class MagicProjectile : MonoBehaviour
         _speed = speed * speedDirectionMultiplier;
         
         transform.SetParent(null);
+        
+        if(instaKillProb == 0) return;
+        
+        var instakill = Random.Range(0, 100 + 1);
+        if (instakill <= instaKillProb) OnInstakillSpawned();
     }
 
     public Player.PlayerID PlayerID => _playerID;
@@ -78,6 +100,8 @@ public class MagicProjectile : MonoBehaviour
     }
 
     public int GetDamage() => _damage;
+
+    private void OnInstakillSpawned() => _instaKill = true;
 
     #endregion
 }
