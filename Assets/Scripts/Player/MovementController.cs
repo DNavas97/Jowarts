@@ -5,9 +5,10 @@ public class MovementController : MonoBehaviour
 {
     #region Private Variables
     
-    [SerializeField] private float _playerSpeed = 3.5f;
-    [SerializeField] private float _jumpForce   = 5.0f;
-    [SerializeField] private float _gravity     = -9.81f;
+    [SerializeField] private float _gravity  = -9.81f;
+
+    private float _playerSpeed;
+    private float _jumpForce;
 
     private Vector3 _velocity;
     private CharacterController _characterController;
@@ -36,6 +37,7 @@ public class MovementController : MonoBehaviour
     public void Initialize(Player player)
     {
         _player = player;
+
         var playerID = _player.GetPlayerID();
 
         _jumpButton = playerID == Player.PlayerID.Player1 ? GlobalParams.JumpInputP1 : GlobalParams.JumpInputP2;
@@ -43,6 +45,10 @@ public class MovementController : MonoBehaviour
         _fireButton = playerID == Player.PlayerID.Player1 ? GlobalParams.FireInputP1 : GlobalParams.FireInputP2;
         _shieldButton = playerID == Player.PlayerID.Player1 ? GlobalParams.ShieldInputP1 : GlobalParams.ShieldInputP2;
     }
+
+    public void SetSpeed(float speed) => _playerSpeed += speed;
+    public void SetJumpForce(float jumpForce) => _jumpForce = jumpForce;
+    
     
     private void InputHandler()
     {

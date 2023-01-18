@@ -18,9 +18,9 @@ public class HealthBar : MonoBehaviour
 
     #region Utility Methods
 
-    public void UpdateHealthBar(int health)
+    public void UpdateHealthBar(int health, int maxHealth)
     {
-        var healthSize = health / 100f;
+        var healthSize = (float)health / (float)maxHealth;
         healthContent.localScale = new Vector3(healthSize, 1, 1);
     }
 
