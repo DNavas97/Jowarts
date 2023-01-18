@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c7f10772f50925479609ab90335dbb6, type: 3}
-  m_Name: SO_Wand03
+  m_Name: SO_Wand07
   m_EditorClassIdentifier: 
-  wandName: 2
-  wandIcon: {fileID: 21300000, guid: a880bf2fac704de46adbda1d4408049e, type: 3}
+  wandName: 6
+  wandIcon: {fileID: 21300000, guid: fba38b79a00dc3742bd3ca670de053f8, type: 3}

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class MagicProjectile : MonoBehaviour
@@ -9,7 +8,7 @@ public class MagicProjectile : MonoBehaviour
     private float _speed;
     private int _damage = 10;
 
-    private Player _ownPlayer;
+    private Player.PlayerID _playerID;
     
     #endregion
 
@@ -39,32 +38,46 @@ public class MagicProjectile : MonoBehaviour
     private void CheckShieldCollision(Collider other)
     {
         if (!other.CompareTag("Shield")) return;
+
+        var shield = other.GetComponent<MagicShield>();
+
+        if (shield.PlayerID == _playerID) return;
         
-        var shieldId = other.GetComponent<MagicShield>().PlayerID;
-        if (shieldId != _ownPlayer.GetPlayerID()) Destroy(gameObject);;
+        if(!shield.CanReflect) Destroy(gameObject);
     }
 
     private void CheckPlayerCollision(Collider other)
     {
         var collidedPlayer = other.GetComponent<Player>();
-        if(collidedPlayer == null || collidedPlayer == _ownPlayer) return;
+        if(collidedPlayer == null || collidedPlayer.GetPlayerID() == _playerID) return;
             
         collidedPlayer.TakeDamage(_damage);
         Destroy(gameObject);
     }
     
-    public void Initialize(Player player)
+    public void Initialize(Player.PlayerID player, int damage, float speed, float instaKillProb, int posionDamage)
     {
-        _ownPlayer = player;
+        _damage = damage;
+        _playerID = player;
+        _speed = speed;
+        
         TryGetComponent(out _rigidbody);
 
-        var speedDirectionMultiplier = player.GetPlayerID() == Player.PlayerID.Player1 ? 1 : -1;
-        _speed = 15.0f * speedDirectionMultiplier;
+        var speedDirectionMultiplier = _playerID == Player.PlayerID.Player1 ? 1 : -1;
+        _speed = speed * speedDirectionMultiplier;
         
         transform.SetParent(null);
     }
 
-    public Player.PlayerID PlayerID => _ownPlayer.GetPlayerID();
+    public Player.PlayerID PlayerID => _playerID;
+    
+    public void MirrorPlayer(Player.PlayerID player)
+    {
+        _playerID = player;
+        _speed *= -1;
+    }
+
+    public int GetDamage() => _damage;
 
     #endregion
 }

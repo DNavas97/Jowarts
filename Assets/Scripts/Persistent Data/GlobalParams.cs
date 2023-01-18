@@ -4,6 +4,8 @@ namespace Persistent_Data
 {
     public static class GlobalParams
     {
+        #region Inputs
+
         public static KeyCode JumpInputP1   = KeyCode.Joystick1Button0;
         public static KeyCode JumpInputP2   = KeyCode.Joystick2Button0;
     
@@ -18,5 +20,53 @@ namespace Persistent_Data
 
         public static KeyCode BackButtonP1 = ShieldInputP1;
         public static KeyCode BackButtonP2 = ShieldInputP2;
+
+        #endregion
+
+        #region BaseParams
+        
+        public static float BaseFireCooldown       = 1f;
+        public static float BaseShieldCooldown     = 3f;
+        public static float BasePlayerSpeed        = 3.5f;
+        public static float BasePlayerJump         = 5.0f;
+        public static int   BaseProjectileDamage   = 10;
+        public static float BaseProjectileSpeed    = 15.0f;
+        public static float BaseInstaKillProb      = 0f;
+        public static int   BaseResurrections      = 0;
+        public static float BaseProjectileSize     = 1f;
+        public static int   BaseHealth             = 100;
+        public static float BaseProjectileHeal     = 0f;
+        public static float BaseShieldHeal         = 0f;
+        public static bool  BaseCanReflect         = false;
+        public static int   BasePoisonDamage       = 0;
+        public static float PoisonDuration         = 5f;
+        
+        #endregion
+
+        #region Wizard Synergies
+
+        public static int   HarryResurrections               = 1;
+        public static float RonSpeedMultiplier               = 0.5f;
+        public static float HermioneProjectileSizeMultiplier = 0.75f;
+        public static float DracoJumpMultiplier              = 0.5f;
+        public static float VoldemortDamageMultiplier        = 0.25f;
+        public static float HagridHealthMultiplier           = 0.2f;
+        public static float SnapeShieldCooldownMultiplier    = 0.3f;
+        public static float JovaniShieldHeal                 = 0.3f;
+
+        #endregion
+
+        #region Wand Synergies
+
+        public static float WandProjectileSpeedMultiplier    = 0.5f;
+        public static float WandProjectileCooldownMultiplier = 0.5f;
+        public static float WandShieldCooldownMultiplier     = 0.2f;
+        public static float WandInstaKillProbMultiplier      = 0.01f;
+        public static float WandProjectileHealMultiplier     = 0.3f;
+        public static int   WandPoisonDamage                 = 1;
+        public static bool  WandCanReflect                   = true;
+
+
+        #endregion
     }
 }

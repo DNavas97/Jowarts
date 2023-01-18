@@ -36,9 +36,9 @@ public class FightUIController : MonoBehaviour
     public void UpdatePlayerHealth(Player player)
     {
         var healthBar = player.GetPlayerID() == Player.PlayerID.Player1 ? player1Bar : player2Bar;
-        var health = player.Health;
+        var health = player.CurrentHealth;
 
-        healthBar.UpdateHealthBar(health);
+        healthBar.UpdateHealthBar(health, player.MaxHealth);
     }
 
     public void OnGameEnd(Player winner)

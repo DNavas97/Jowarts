@@ -50,7 +50,7 @@ public class FightGameController : MonoBehaviour
         fightUIController.Initialize(_player1Wizard, _player2Wizard);
     }
     
-    public void OnPlayerTakeHit(Player player) => fightUIController.UpdatePlayerHealth(player);
+    public void OnPlayerHealthUpdated(Player player) => fightUIController.UpdatePlayerHealth(player);
 
     public void OnGameEnd(Player loser)
     {
