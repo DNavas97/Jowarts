@@ -10,6 +10,7 @@ public class WizardToggle : MonoBehaviour
 
     [SerializeField] private Image _toggleBorder, wizardIcon;
     [SerializeField] private Button _button;
+    [SerializeField] private Color32 _redColor, _blueColor, _blackColor;
 
     private WizardSO _wizard;
     private PlayerID _selectedByPlayer;
@@ -46,8 +47,8 @@ public class WizardToggle : MonoBehaviour
 
     public void OnValueChanged(bool value)
     {
-        if(!value) _toggleBorder.color = Color.black;
-        else       _toggleBorder.color = _selectedByPlayer == PlayerID.Player1 ? Color.red : Color.blue;
+        if(!value) _toggleBorder.color = _blackColor;
+        else       _toggleBorder.color = _selectedByPlayer == PlayerID.Player1 ? _redColor : _blueColor;
 
         if (value)
         {
