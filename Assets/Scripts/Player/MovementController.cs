@@ -1,3 +1,4 @@
+using Persistent_Data;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
@@ -13,7 +14,8 @@ public class MovementController : MonoBehaviour
     private Player _player;
     private bool _gameEnded = false;
 
-    private string _jumpButton, _horizontalButton, _fireButton;
+    private KeyCode _jumpButton, _fireButton, _shieldButton;
+    private string _horizontalButton;
     
     #endregion
 
@@ -35,10 +37,11 @@ public class MovementController : MonoBehaviour
     {
         _player = player;
         var playerID = _player.GetPlayerID();
-        
-        _jumpButton = playerID == Player.PlayerID.Player1 ? "JumpP1" : "JumpP2";
+
+        _jumpButton = playerID == Player.PlayerID.Player1 ? GlobalParams.JumpInputP1 : GlobalParams.JumpInputP2;
         _horizontalButton = playerID == Player.PlayerID.Player1 ? "HorizontalP1" : "HorizontalP2";
-        _fireButton = playerID == Player.PlayerID.Player1 ? "FireP1" : "FireP2";
+        _fireButton = playerID == Player.PlayerID.Player1 ? GlobalParams.FireInputP1 : GlobalParams.FireInputP2;
+        _shieldButton = playerID == Player.PlayerID.Player1 ? GlobalParams.ShieldInputP1 : GlobalParams.ShieldInputP2;
     }
     
     private void InputHandler()
@@ -48,11 +51,17 @@ public class MovementController : MonoBehaviour
         JumpHandler();
         MovementHandler();
         FireHandler();
+        ShieldHandler();
     }
 
     private void FireHandler()
     {
-        if (Input.GetButtonDown(_fireButton)) _player.Fire();
+        if (Input.GetKeyDown(_fireButton)) _player.Fire();
+    }    
+    
+    private void ShieldHandler()
+    {
+        if (Input.GetKeyDown(_shieldButton)) _player.Shield();
     }
 
     private void JumpHandler()
@@ -61,7 +70,7 @@ public class MovementController : MonoBehaviour
         {
             _velocity.y = -1f;
 
-            if (Input.GetButtonDown(_jumpButton))
+            if (Input.GetKeyDown(_jumpButton))
                 _velocity.y = _jumpForce;
         }
         else

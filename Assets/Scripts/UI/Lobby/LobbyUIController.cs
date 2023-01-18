@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Persistent_Data;
 using UnityEngine;
 using PlayerID = Player.PlayerID; 
 
@@ -77,7 +78,7 @@ namespace UI.Lobby
         
         private void HandleSubmitInput()
         {
-            if (Input.GetButtonDown("JumpP1"))
+            if (Input.GetKeyDown(GlobalParams.SubmitInputP1))
             {
                 if (!_lockedWizardP1)
                 {
@@ -91,7 +92,7 @@ namespace UI.Lobby
                 }
             }
             
-            if(Input.GetButtonDown("JumpP2"))
+            if(Input.GetKeyDown(GlobalParams.SubmitInputP2))
             {
                 if (!_lockedWizardP2)
                 {
@@ -108,7 +109,7 @@ namespace UI.Lobby
         
         private void HandleBackInput()
         {
-            if (Input.GetButtonDown("ShieldP1"))
+            if (Input.GetKeyDown(GlobalParams.BackButtonP1))
             {
                 if (_lockedWandP1)
                 {
@@ -122,7 +123,7 @@ namespace UI.Lobby
                 }
             }
             
-            if(Input.GetButtonDown("ShieldP2"))
+            if(Input.GetKeyDown(GlobalParams.BackButtonP2))
             {
                 if (_lockedWandP2)
                 {

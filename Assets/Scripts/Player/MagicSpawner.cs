@@ -5,6 +5,7 @@ public class MagicSpawner : MonoBehaviour
     #region Private Variables
 
     [SerializeField] private GameObject _magicProjectilePrefab;
+    [SerializeField] private GameObject _shieldPrefab;
 
     private Player _player;
     
@@ -27,6 +28,13 @@ public class MagicSpawner : MonoBehaviour
         var prefab = Instantiate(_magicProjectilePrefab, transform.position, Quaternion.identity);
         var magicProjectile = prefab.GetComponent<MagicProjectile>();
         magicProjectile.Initialize(_player);
+    }
+
+    public void Shield(Transform t)
+    {
+        var prefab = Instantiate(_shieldPrefab, t);
+        var magicShield = prefab.GetComponent<MagicShield>();
+        magicShield.Initialize(_player.GetPlayerID());
     }
 
     #endregion
