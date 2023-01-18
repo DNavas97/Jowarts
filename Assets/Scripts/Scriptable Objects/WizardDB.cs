@@ -16,7 +16,7 @@ public class WizardDB : ScriptableObject
         Hermione  = 4,
         Draco     = 5,
         Snape     = 6,
-        Jovani    = 7
+        Gozoso    = 7
     }
 
     public WizardSO GetWizardByName(WizardName wizardName) => wizards.FirstOrDefault(wizard => wizard.wizardName == wizardName);

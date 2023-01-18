@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SO_Wizard01
   m_EditorClassIdentifier: 
   wizardName: 0
-  wizardIcon: {fileID: 21300000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
+  wizardIcon: {fileID: 21300000, guid: e230456e05e1589499249b2c4a9f3ffa, type: 3}

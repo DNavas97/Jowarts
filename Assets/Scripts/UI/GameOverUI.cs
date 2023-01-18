@@ -1,4 +1,5 @@
 using System.Collections;
+using Persistent_Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -64,9 +65,9 @@ public class GameOverUI : MonoBehaviour
 
     private void HandleConfirmationInput()
     {
-        var confirmation = _winner == Player.PlayerID.Player1 ? "ShieldP2" : "ShieldP1";
+        var confirmation = _winner == Player.PlayerID.Player1 ? GlobalParams.SubmitInputP2 : GlobalParams.SubmitInputP1;
 
-        if (!Input.GetButtonDown(confirmation)) return;
+        if (!Input.GetKeyDown(confirmation)) return;
         
         var button = buttonLayout.GetChild(_selectedOption).GetComponent<Button>();
         button.onClick.Invoke();

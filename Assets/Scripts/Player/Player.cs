@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     public PlayerID GetPlayerID() => _playerID;
 
     public void Fire() => _magicSpawner.Fire();
+    public void Shield() => _magicSpawner.Shield(transform);
 
     public void TakeDamage(int damage)
     {
