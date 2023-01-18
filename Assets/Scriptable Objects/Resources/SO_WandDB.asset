@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d549427468cd8a499dfe90149938174, type: 3}
+  m_Name: SO_WandDB
+  m_EditorClassIdentifier: 
+  wands:
+  - {fileID: 11400000, guid: b86acbdc5cfd5b6459e6c9c0e3b52f2d, type: 2}
+  - {fileID: 11400000, guid: 928e86ab289511846bb5ecc51898fa7d, type: 2}
+  - {fileID: 11400000, guid: cb35ca2ff5178a74b8f96e4727c2312f, type: 2}
+  - {fileID: 11400000, guid: ab2d2cbde33b07c489a3f194f5efb47e, type: 2}
