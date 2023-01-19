@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 
@@ -8,13 +9,13 @@ public class WandDB : ScriptableObject
     public List<WandSO> wands;
     public enum WandName
     {
-        Speed = 0,
-        FireCooldown  = 1,
-        ShieldCooldown = 2,
-        InstaKill  = 3,
-        Poison = 4,
-        Heal = 5,
-        Reflect = 6
+        [Description("Speedifren")] Speed = 0,
+        [Description("Varita Precoz")] FireCooldown  = 1,
+        [Description("Palo Cobarde")] ShieldCooldown = 2,
+        [Description("Varita Rusa")] InstaKill  = 3,
+        [Description("La Venenos")] Poison = 4,
+        [Description("Manguito Clasicus")] Heal = 5,
+        [Description("Reflectius Maxima")] Reflect = 6
     }
     
     public WandSO GetWandByName(WandName wandName) => wands.FirstOrDefault(wand => wand.wandName == wandName);

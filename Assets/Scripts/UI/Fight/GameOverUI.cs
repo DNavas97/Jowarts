@@ -75,7 +75,7 @@ public class GameOverUI : MonoBehaviour
 
     public void ShowWithWinner(Player player)
     {
-        _winner = player.GetPlayerID();
+        _winner = player.PlayerId;
         
         _canvasGroup.alpha = 1;
         _winnerText.text = "Gana " + player.GetWizard().wizardName;

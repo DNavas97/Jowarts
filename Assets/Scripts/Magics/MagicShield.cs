@@ -27,7 +27,7 @@ public class MagicShield : MonoBehaviour
     public void Initialize(Player player, bool canReflect, float healMultiplier)
     {
         _player = player;
-        PlayerID = _player.GetPlayerID();
+        PlayerID = _player.PlayerId;
         CanReflect = canReflect;
         _healMultiplier = healMultiplier;
         

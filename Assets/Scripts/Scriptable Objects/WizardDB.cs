@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 
@@ -9,14 +10,14 @@ public class WizardDB : ScriptableObject
     
     public enum WizardName
     {
-        Voldemort = 0,
-        Hagrid    = 1,
-        Harry     = 2,
-        Ron       = 3,
-        Hermione  = 4,
-        Draco     = 5,
-        Snape     = 6,
-        Gozoso    = 7
+        [Description("Kiko Voldemoro")] Voldemort = 0,
+        [Description("El Pelucas")] Hagrid    = 1,
+        [Description("Parry Hotter")] Harry     = 2,
+        [Description("Ron Whiskey")] Ron       = 3,
+        [Description("Germayonesa")] Hermione  = 4,
+        [Description("Draco Marlboro")] Draco     = 5,
+        [Description("Indulgentus Snape")] Snape     = 6,
+        [Description("Jovani Vazquez")] Gozoso    = 7
     }
 
     public WizardSO GetWizardByName(WizardName wizardName) => wizards.FirstOrDefault(wizard => wizard.wizardName == wizardName);

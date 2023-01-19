@@ -39,7 +39,7 @@ public class MovementController : MonoBehaviour
         CountdownMenu.OnGameStart.AddListener(OnGameStart);
         _player = player;
 
-        var playerID = _player.GetPlayerID();
+        var playerID = _player.PlayerId;
 
         _jumpButton = playerID == Player.PlayerID.Player1 ? GlobalParams.JumpInputP1 : GlobalParams.JumpInputP2;
         _horizontalButton = playerID == Player.PlayerID.Player1 ? "HorizontalP1" : "HorizontalP2";
@@ -97,7 +97,7 @@ public class MovementController : MonoBehaviour
         
         var horizontalvector = new Vector3(horizontalInput, 0, 0);
         var movementVector = transform.TransformDirection(horizontalvector);
-        var finalVector = _player.GetPlayerID() == Player.PlayerID.Player1 ? movementVector : -movementVector;
+        var finalVector = _player.PlayerId == Player.PlayerID.Player1 ? movementVector : -movementVector;
         
         _characterController.Move(finalVector * _playerSpeed * Time.deltaTime);
         _characterController.Move(_velocity * Time.deltaTime);

@@ -1,3 +1,4 @@
+using EWorldsCore.Base.Scripts.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,7 +31,7 @@ public class StatsContent : MonoBehaviour
 
     public void UpdatePlayerInfo(WizardSO wizard)
     {
-        wizardNameText.text = wizard.wizardName.ToString();
+        wizardNameText.text = EnumUtils.GetEnumDescription(wizard.wizardName);
         wizardIcon.sprite = wizard.wizardIcon;
     }
 

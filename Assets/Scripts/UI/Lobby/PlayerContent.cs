@@ -1,4 +1,5 @@
 using System;
+using EWorldsCore.Base.Scripts.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,24 +24,15 @@ public class PlayerContent : MonoBehaviour
 
     public void UpdatePlayerContent(WizardSO wizard)
     {
+        var name = wizard.wizardName == WizardDB.WizardName.Gozoso ? "?" : EnumUtils.GetEnumDescription(wizard.wizardName);
         _wizardIcon.sprite = wizard.wizardIcon;
-        _wizardNameText.text = wizard.wizardName.ToString();
+        _wizardNameText.text = name;
     }
 
     public void UpdateWand(WandSO wand)
     {
-        _wandNameText.text = wand.wandName.ToString();
+        _wandNameText.text = EnumUtils.GetEnumDescription(wand.wandName);
         _wandIcon.sprite = wand.wandIcon;
-    }
-    
-    public void OnRightButtonClicked()
-    {
-        Debug.Log("Animar Right");
-    }
-
-    public void OnLeftButtonClicked()
-    {
-        Debug.Log("Animar Left");
     }
 
     public void OnWizardFixed() => _rightGroupCanvas.alpha = _leftGroupCanvas.alpha = 1;

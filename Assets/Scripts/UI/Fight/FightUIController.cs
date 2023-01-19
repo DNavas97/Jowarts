@@ -37,7 +37,7 @@ public class FightUIController : MonoBehaviour
     
     public void UpdatePlayerHealth(Player player)
     {
-        var healthBar = player.GetPlayerID() == Player.PlayerID.Player1 ? player1Bar : player2Bar;
+        var healthBar = player.PlayerId == Player.PlayerID.Player1 ? player1Bar : player2Bar;
         var health = player.CurrentHealth;
 
         healthBar.UpdateHealthBar(health, player.MaxHealth);
@@ -52,13 +52,13 @@ public class FightUIController : MonoBehaviour
 
     public void UpdateShieldCooldown(Player player, float f)
     {
-        var healthBar = player.GetPlayerID() == Player.PlayerID.Player1 ? player1Bar : player2Bar;
+        var healthBar = player.PlayerId == Player.PlayerID.Player1 ? player1Bar : player2Bar;
         healthBar.UpdateShieldCooldownBar(f);
     }
 
     public void UpdateFireCooldown(Player player, float f)
     {
-        var healthBar = player.GetPlayerID() == Player.PlayerID.Player1 ? player1Bar : player2Bar;
+        var healthBar = player.PlayerId == Player.PlayerID.Player1 ? player1Bar : player2Bar;
         healthBar.UpdateFireCooldownBar(f);
     }
 }
