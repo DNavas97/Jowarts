@@ -16,7 +16,8 @@ public class Player : MonoBehaviour
     private FightGameController _fightGameController;
     private WizardSO _wizardSo;
     private WandSO _wandSo;
-    
+
+    [SerializeField] private SkinnedMeshRenderer _skr;
     [SerializeField] private MovementController _movementController;
     [SerializeField] private MagicSpawner _magicSpawner;
     
@@ -99,10 +100,11 @@ public class Player : MonoBehaviour
 
     public void Shield() => _magicSpawner.Shield(transform);
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, bool poison)
     {
+        StartCoroutine(PrintPlayer(poison));
         CurrentHealth -= damage;
-
+        
         if (CurrentHealth <= 0)
         {
             CurrentHealth = 0;
@@ -234,7 +236,7 @@ public class Player : MonoBehaviour
         while (duration > 0)
         {
             yield return new WaitForSecondsRealtime(1f);
-            TakeDamage(damagePerSecond);
+            TakeDamage(damagePerSecond, true);
             duration--;
         }
     }
@@ -248,6 +250,22 @@ public class Player : MonoBehaviour
     public void UpdateShieldCooldownView(float f) => _fightGameController.OnShieldCooldownUpdated(this, f);
 
     public void UpdateFireCooldownView(float f) =>_fightGameController.OnFireCooldownUpdated(this, f);
+
+    private IEnumerator PrintPlayer(bool poison)
+    {
+        var color = poison ? Color.green : Color.red;
+        var materials = _skr.materials;
+
+        foreach (var material in materials) material.color = color;
+
+            _skr.materials = materials;
+
+        yield return new WaitForSecondsRealtime(0.2f);
+        
+        foreach (var material in materials) material.color = Color.white;
+
+        _skr.materials = materials;
+    }
 
     #endregion
 }

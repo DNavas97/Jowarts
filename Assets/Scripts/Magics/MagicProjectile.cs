@@ -68,7 +68,7 @@ public class MagicProjectile : MonoBehaviour
             _ownPlayer.Heal(healAmount);
         }
         var damage = _instaKill ? 9999 : _damage;
-        collidedPlayer.TakeDamage(damage);
+        collidedPlayer.TakeDamage(damage, false);
         Destroy(gameObject);
     }
     

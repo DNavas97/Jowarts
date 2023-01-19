@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 5120465990705576503}
   - component: {fileID: 3258568946998373127}
   m_Layer: 0
-  m_Name: PF_Jovani
+  m_Name: PF_JovaniPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1b42e3a95274258ba21a7bf8804bb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skr: {fileID: 5148767804184314020}
   _movementController: {fileID: 1453532399186487134}
   _magicSpawner: {fileID: 1768514923}
 --- !u!143 &1989903414520183027

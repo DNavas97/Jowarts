@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1b42e3a95274258ba21a7bf8804bb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skr: {fileID: 434116381624260206}
   _movementController: {fileID: 1453532399186487134}
   _magicSpawner: {fileID: 1768514923}
 --- !u!143 &1989903414520183027
