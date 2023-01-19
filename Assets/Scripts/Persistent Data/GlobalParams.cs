@@ -31,7 +31,7 @@ namespace Persistent_Data
         public static float BasePlayerJump         = 5.0f;
         public static int   BaseProjectileDamage   = 10;
         public static float BaseProjectileSpeed    = 15.0f;
-        public static float BaseInstaKillProb      = 0f;
+        public static int   BaseInstaKillProb      = 0;
         public static int   BaseResurrections      = 0;
         public static float BaseProjectileSize     = 1f;
         public static int   BaseHealth             = 100;
@@ -47,7 +47,7 @@ namespace Persistent_Data
 
         public static int   HarryResurrections               = 1;
         public static float RonSpeedMultiplier               = 0.5f;
-        public static float HermioneProjectileSizeMultiplier = 0.75f;
+        public static float HermioneProjectileSizeMultiplier = 0.25f;
         public static float DracoJumpMultiplier              = 0.5f;
         public static float VoldemortDamageMultiplier        = 0.25f;
         public static float HagridHealthMultiplier           = 0.2f;
@@ -61,11 +61,10 @@ namespace Persistent_Data
         public static float WandProjectileSpeedMultiplier    = 0.5f;
         public static float WandProjectileCooldownMultiplier = 0.5f;
         public static float WandShieldCooldownMultiplier     = 0.2f;
-        public static float WandInstaKillProbMultiplier      = 0.01f;
+        public static int   WandInstaKillProbMultiplier      = 4;
         public static float WandProjectileHealMultiplier     = 0.3f;
-        public static int   WandPoisonDamage                 = 1;
+        public static int   WandPoisonDamage                 = 5;
         public static bool  WandCanReflect                   = true;
-
 
         #endregion
     }

@@ -1,36 +1,52 @@
+using Persistent_Data;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class LoadingPlayerInfo : MonoBehaviour
 {
     #region Private Variables
 
-    [SerializeField] private Player.PlayerID _playerID;
-    [SerializeField] private Image wizardImage;
+    [SerializeField] private Player.PlayerID id;
+    [SerializeField] private Image wandImage;
     [SerializeField] private TextMeshProUGUI wizardNameText, wizardWandText;
+    [SerializeField] private GameObject _readyText, _tipText;
+
+    private bool _ready;
+    
+    #endregion
+
+    #region Events
+
+    public UnityEvent OnPlayerReady = new UnityEvent();
 
     #endregion
 
     #region Unity LifeCycle
 
-    private void Start() => Initialize();
-
     #endregion
 
     #region Utility Methods
 
-    private void Initialize()
+    public void Initialize(WizardSO wizard, WandSO wand)
     {
-        var persistenData = PersistentData.Instance;
-        
-        var wizard = _playerID == Player.PlayerID.Player1 ? persistenData.WizardP1 : persistenData.WizardP2;
-        var wand = _playerID == Player.PlayerID.Player1 ? persistenData.WandP1 : persistenData.WandP2;
-
-        wizardImage.sprite = wizard.wizardIcon;
+        wandImage.sprite = wand.wandIcon;
         wizardNameText.text = wizard.wizardName.ToString();
         wizardWandText.text = wand.wandName.ToString();
     }
-    
+
+    private void Update()
+    {
+        var input = id == Player.PlayerID.Player1 ? GlobalParams.SubmitInputP1 : GlobalParams.SubmitInputP2;
+        
+        if(!Input.GetKeyDown(input) || _ready) return;
+            
+        _readyText.SetActive(true);
+        _tipText.SetActive(false);
+        
+        OnPlayerReady?.Invoke();
+    }
+
     #endregion
 }

@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,14 +6,13 @@ public class LoadingMenu : MonoBehaviour
     #region Private Variables
 
     [SerializeField] private LoadingPlayerInfo player1Info, player2Info;
-    [SerializeField] private Transform _barContent;
-    private PersistentData _data;
+    [SerializeField] private Transform _p1Spawn, _p2Spawn;
+
+    private int _playersReady = 0;
     
     #endregion
 
     #region Unity LifeCycle
-
-    private void Awake() => _data = PersistentData.Instance;
 
     private void Start() => Initialize();
 
@@ -25,27 +22,27 @@ public class LoadingMenu : MonoBehaviour
 
     private void Initialize()
     {
-        StartCoroutine(LoadBar());
+        var persistenData = PersistentData.Instance;
+
+        player1Info.Initialize(persistenData.WizardP1, persistenData.WandP1);
+        player2Info.Initialize(persistenData.WizardP2, persistenData.WandP2);
+
+        Instantiate(persistenData.WizardP1.wizardPrefab, _p1Spawn);
+        Instantiate(persistenData.WizardP2.wizardPrefab, _p2Spawn);
+        
+        player1Info.OnPlayerReady.AddListener(OnPlayerReady);
+        player2Info.OnPlayerReady.AddListener(OnPlayerReady);
+
     }
 
-    private IEnumerator LoadBar()
+    private void OnPlayerReady()
     {
-        var t = 0f;
-        const float loadTime = 5f;
+        _playersReady++;
         
-        while (t < 1)
-        {
-            t += Time.deltaTime / loadTime;
-            
-            _barContent.localScale = new Vector3(t, 1, 1);
-            
-            yield return null;
-        }
-        
-        OnLoadedEnd();
+        if(_playersReady < 2) return;
+
+        SceneManager.LoadScene("PS_FightScene", LoadSceneMode.Single);
     }
     
-    private void OnLoadedEnd() => SceneManager.LoadScene("PS_FightScene", LoadSceneMode.Single);
-
     #endregion
 }
