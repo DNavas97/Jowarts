@@ -1,4 +1,5 @@
 using System.Collections;
+using EWorldsCore.Base.Scripts.Utils;
 using Persistent_Data;
 using TMPro;
 using Unity.VisualScripting;
@@ -80,7 +81,7 @@ public class GameOverUI : MonoBehaviour
         _winner = player.PlayerId;
         
         _canvasGroup.alpha = 1;
-        _winnerText.text = "Gana " + player.GetWizard().wizardName;
+        _winnerText.text = $"(HA PERDIDO {EnumUtils.GetEnumDescription(player.GetWizard().wizardName)})";
 
         OnButtonSelected();
         

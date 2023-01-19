@@ -15,4 +15,4 @@ MonoBehaviour:
   wandName: 3
   wandIcon: {fileID: 21300000, guid: f07905dafe791d6459920d4acab10a64, type: 3}
   wandShot: {fileID: 9117022523182292993, guid: 3a510d9c31fc12c4cbc59aa217c77e92, type: 3}
-  description: 4% probabilidad de muerte instantanea
+  description: Probabilidad de matar instantaneamente

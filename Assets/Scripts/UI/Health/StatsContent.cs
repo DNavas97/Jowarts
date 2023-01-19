@@ -11,6 +11,9 @@ public class StatsContent : MonoBehaviour
     [SerializeField] private Transform healthContent, manaContent, shieldContent;
     [SerializeField] private TextMeshProUGUI wizardNameText;
     
+    private const int N = 4;
+    private const float M = 1.5f;
+    
     #endregion
 
     #region Unity LifeCycle
@@ -21,7 +24,14 @@ public class StatsContent : MonoBehaviour
 
     public void UpdateHealthBar(int health, int maxHealth)
     {
-        var healthSize = (float)health / (float)maxHealth;
+        var healthCalc = health / (float)maxHealth * 100f;
+        var nRoot = Mathf.Pow((healthCalc / 100f), (1f / M));
+        var nPower = Mathf.Pow((healthCalc / 100f), N);
+
+        var healthImage = healthContent.GetComponent<Image>();
+        healthImage.color = health < maxHealth / 2 ? Color.Lerp(Color.red, Color.yellow, (float)nRoot) : Color.Lerp(Color.yellow, Color.green, (float)nPower);
+
+        var healthSize = health / (float)maxHealth;
         healthContent.localScale = new Vector3(healthSize, 1, 1);
     }
 

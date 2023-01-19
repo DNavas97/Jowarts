@@ -57,10 +57,8 @@ public class FightGameController : MonoBehaviour
 
     public void OnGameEnd(Player loser)
     {
-        var winner = loser == _player1 ? _player2 : _player1;
-        
         OnGameEnded.Invoke();
-        fightUIController.OnGameEnd(winner);
+        fightUIController.OnGameEnd(loser);
     }
 
     #endregion
