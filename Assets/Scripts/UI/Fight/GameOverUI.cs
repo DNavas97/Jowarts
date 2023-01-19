@@ -17,7 +17,7 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private Transform buttonLayout;
     [SerializeField] private Color32 yellow;
     
-    private Player.PlayerID _winner = Player.PlayerID.None;
+    private Player.PlayerID _loser = Player.PlayerID.None;
     private bool _canInput;
     private int _selectedOption = 0;
     private int _unselectedOption = 1;
@@ -30,7 +30,7 @@ public class GameOverUI : MonoBehaviour
     
     private void Update()
     {
-        if(_winner == Player.PlayerID.None) return;
+        if(_loser == Player.PlayerID.None) return;
         
         HandleInputs();
     }
@@ -53,7 +53,7 @@ public class GameOverUI : MonoBehaviour
     
     private void HandleSelectionInput()
     {
-        var horizontal = _winner == Player.PlayerID.Player1 ? "HorizontalP2" : "HorizontalP1";
+        var horizontal = _loser == Player.PlayerID.Player1 ? "HorizontalP1" : "HorizontalP2";
         var horizontalInput = Input.GetAxis(horizontal);
 
         if (horizontalInput == 0 || !_canInput) return;
@@ -68,7 +68,7 @@ public class GameOverUI : MonoBehaviour
 
     private void HandleConfirmationInput()
     {
-        var confirmation = _winner == Player.PlayerID.Player1 ? GlobalParams.SubmitInputP2 : GlobalParams.SubmitInputP1;
+        var confirmation = _loser == Player.PlayerID.Player1 ? GlobalParams.SubmitInputP1 : GlobalParams.SubmitInputP2;
 
         if (!Input.GetKeyDown(confirmation)) return;
         
@@ -76,20 +76,21 @@ public class GameOverUI : MonoBehaviour
         button.onClick.Invoke();
     }
 
-    public void ShowWithWinner(Player player)
+    public void ShowWithLoser(Player player)
     {
-        _winner = player.PlayerId;
+        _loser = player.PlayerId;
         
         _canvasGroup.alpha = 1;
         _winnerText.text = $"(HA PERDIDO {EnumUtils.GetEnumDescription(player.GetWizard().wizardName)})";
 
         OnButtonSelected();
-        
-        _canInput = true;
+        StartCoroutine(OnGameEndBlockInput());
     }
 
     private void OnRematchButonClicked()
     {
+        PersistentData.Instance.ResetCounter();
+        
         var scene = SceneManager.GetActiveScene(); 
         SceneManager.LoadScene(scene.name);
     }
@@ -110,6 +111,13 @@ public class GameOverUI : MonoBehaviour
         _canInput = false;
             
         yield return new WaitForSecondsRealtime(0.2f);
+
+        _canInput = true;
+    }
+
+    private IEnumerator OnGameEndBlockInput()
+    {
+        yield return new WaitForSecondsRealtime(2f);
 
         _canInput = true;
     }

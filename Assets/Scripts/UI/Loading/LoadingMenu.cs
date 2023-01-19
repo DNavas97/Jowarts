@@ -33,6 +33,7 @@ public class LoadingMenu : MonoBehaviour
         player1Info.OnPlayerReady.AddListener(OnPlayerReady);
         player2Info.OnPlayerReady.AddListener(OnPlayerReady);
 
+        persistenData.ResetCounter();
     }
 
     private void OnPlayerReady()
@@ -40,7 +41,7 @@ public class LoadingMenu : MonoBehaviour
         _playersReady++;
         
         if(_playersReady < 2) return;
-
+        
         SceneManager.LoadScene("PS_FightScene", LoadSceneMode.Single);
     }
     

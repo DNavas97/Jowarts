@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     #region Public Variables
 
     public PlayerID PlayerId { get; private set; }
-
+    
     #endregion
     
     #region Private Variables
@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private FightGameController _fightGameController;
     private WizardSO _wizardSo;
     private WandSO _wandSo;
+    private int _victories;
 
     [SerializeField] private SkinnedMeshRenderer _skr;
     [SerializeField] private MovementController _movementController;
@@ -116,7 +117,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                _fightGameController.OnGameEnd(this);    
+                _fightGameController.OnRoundEnd(this);    
             }
         }
         

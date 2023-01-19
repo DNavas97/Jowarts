@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using EWorldsCore.Base.Scripts.Utils;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class StatsContent : MonoBehaviour
     [SerializeField] private Image wizardIcon;
     [SerializeField] private Transform healthContent, manaContent, shieldContent;
     [SerializeField] private TextMeshProUGUI wizardNameText;
+    [SerializeField] private List<Image> _roundImages;
     
     private const int N = 4;
     private const float M = 1.5f;
@@ -45,5 +47,11 @@ public class StatsContent : MonoBehaviour
         wizardIcon.sprite = wizard.wizardIcon;
     }
 
+    public void UpdateRounds(int n)
+    {
+        for(var i = 0; i < n; i ++)
+            _roundImages[i].color = Color.cyan;
+    }
+    
     #endregion
 }

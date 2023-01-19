@@ -8,19 +8,27 @@ public class PersistentData : MonoBehaviour
 
     public static PersistentData Instance;
     
+    public int RoundNumber { get; set; }
+    public int Player1Rounds { get; set; }
+    public int Player2Rounds { get; set; }
+    
     [HideInInspector] public WizardSO WizardP1, WizardP2;
     [HideInInspector] public WandSO WandP1, WandP2;
-
-    private WizardDB _wizardDB;
-    private WandDB   _wandDB;
-    
-    private const string CharacterDBPath = "SO_WizardDB";
-    private const string WandDBPath = "SO_WandDB";
     
     #endregion
 
     #region Private Variables
 
+    private const string CharacterDBPath = "SO_WizardDB";
+    private const string WandDBPath = "SO_WandDB";
+    
+    private WizardDB _wizardDB;
+    private WandDB   _wandDB;
+
+    #endregion
+
+    #region Unity LifeCycle
+    
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -29,11 +37,6 @@ public class PersistentData : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         LoadDatabase();
     }
-
-    #endregion
-
-    #region Unity LifeCycle
-    
 
     #endregion
 
@@ -59,5 +62,14 @@ public class PersistentData : MonoBehaviour
     public List<WizardSO> GetWizardDB() => _wizardDB.wizards;
     public List<WandSO> GetWandDB() => _wandDB.wands;
 
+    public void ResetCounter() => RoundNumber = Player1Rounds = Player2Rounds = 0;
+
+    public void SetRoundWinner(Player.PlayerID player)
+    {
+        RoundNumber++;
+        
+        if (player == Player.PlayerID.Player1) Player1Rounds++;
+        else                                   Player2Rounds++;
+    }
     #endregion
 }

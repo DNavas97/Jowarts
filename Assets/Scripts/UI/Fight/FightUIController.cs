@@ -26,6 +26,7 @@ public class FightUIController : MonoBehaviour
         
         UpdatePlayerIcon(Player.PlayerID.Player1, wizard1);
         UpdatePlayerIcon(Player.PlayerID.Player2, wizard2);
+        UpdatePlayersRounds();
     }
 
     private void UpdatePlayerIcon(Player.PlayerID player, WizardSO wizard)
@@ -43,10 +44,7 @@ public class FightUIController : MonoBehaviour
         healthBar.UpdateHealthBar(health, player.MaxHealth);
     }
 
-    public void OnGameEnd(Player winner)
-    {
-        _gameOverUI.ShowWithWinner(winner);
-    }
+    public void OnGameEnd(Player winner) => _gameOverUI.ShowWithLoser(winner);
 
     #endregion
 
@@ -60,5 +58,11 @@ public class FightUIController : MonoBehaviour
     {
         var healthBar = player.PlayerId == Player.PlayerID.Player1 ? player1Bar : player2Bar;
         healthBar.UpdateFireCooldownBar(f);
+    }
+
+    private void UpdatePlayersRounds()
+    {
+        player1Bar.UpdateRounds(PersistentData.Instance.Player1Rounds);
+        player2Bar.UpdateRounds(PersistentData.Instance.Player2Rounds);
     }
 }

@@ -40,6 +40,10 @@ public class CountdownMenu : MonoBehaviour
         _canvasGroup.alpha = 1;
         var count = _countDownMax;
 
+        var roundNumber = PersistentData.Instance.RoundNumber + 1 == 3 ? "Final" : $"{PersistentData.Instance.RoundNumber + 1}";
+        _numberText.text = $"Ronda {roundNumber}";
+        yield return new WaitForSecondsRealtime(2f);
+        
         while (count > 0)
         {
             _numberText.text = count.ToString();

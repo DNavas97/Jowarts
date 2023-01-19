@@ -1,11 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class FightGameController : MonoBehaviour
 {
     #region Public Variables
 
-    public static FightGameController Instance;
     public static UnityEvent OnGameEnded = new UnityEvent();
 
     #endregion
@@ -18,18 +19,12 @@ public class FightGameController : MonoBehaviour
     private Player _player1, _player2;
     private WizardSO _player1Wizard, _player2Wizard;
     private WandSO _player1Wand, _player2Wand;
-
+    private  PersistentData _persistentData;
     #endregion
 
     #region Unity LifeCycle
 
-    private void Awake()
-    {
-        if (Instance != null) Instance = this;
-        else Destroy(this);
-        
-        Initialize();
-    }
+    private void Awake() => Initialize();
 
     #endregion
 
@@ -37,12 +32,12 @@ public class FightGameController : MonoBehaviour
 
     private void Initialize()
     {
-        var data = PersistentData.Instance;
-
-        _player1Wizard = data.WizardP1;
-        _player2Wizard = data.WizardP2;
-        _player1Wand = data.WandP1;
-        _player2Wand = data.WandP2;
+        _persistentData = PersistentData.Instance;
+        
+        _player1Wizard = _persistentData.WizardP1;
+        _player2Wizard = _persistentData.WizardP2;
+        _player1Wand = _persistentData.WandP1;
+        _player2Wand = _persistentData.WandP2;
 
         _player1 = Instantiate(_player1Wizard.wizardPrefab, _player1Spawn).GetComponent<Player>();
         _player2 = Instantiate(_player2Wizard.wizardPrefab, _player2Spawn).GetComponent<Player>();
@@ -55,10 +50,37 @@ public class FightGameController : MonoBehaviour
     
     public void OnPlayerHealthUpdated(Player player) => fightUIController.UpdatePlayerHealth(player);
 
-    public void OnGameEnd(Player loser)
+    public void OnRoundEnd(Player loser)
     {
-        OnGameEnded.Invoke();
-        fightUIController.OnGameEnd(loser);
+        var winner = loser.PlayerId == Player.PlayerID.Player1 ? Player.PlayerID.Player2 : Player.PlayerID.Player1;
+        var scene = SceneManager.GetActiveScene(); 
+        
+        _persistentData.SetRoundWinner(winner);
+
+        switch (_persistentData.RoundNumber)
+        {
+            case 1:
+                SceneManager.LoadScene(scene.name);
+                break;
+            case 2:
+                if (_persistentData.Player1Rounds == _persistentData.Player2Rounds)
+                {
+                    SceneManager.LoadScene(scene.name);
+                }
+                else
+                {
+                    var gLoser = _persistentData.Player1Rounds > _persistentData.Player2Rounds ? _player2 : _player1;
+                    OnGameEnd(gLoser);
+                }
+                break;
+            case 3:
+                var gameLoser = _persistentData.Player1Rounds > _persistentData.Player2Rounds ? _player2 : _player1;
+                OnGameEnd(gameLoser);
+                break;
+            default:
+                Debug.Log("Rondas: " + _persistentData.RoundNumber);
+                break;
+        }
     }
 
     #endregion
@@ -67,4 +89,9 @@ public class FightGameController : MonoBehaviour
 
     public void OnFireCooldownUpdated(Player p, float f) => fightUIController.UpdateFireCooldown(p, f);
 
+    private void OnGameEnd(Player loser)
+    {
+        OnGameEnded.Invoke();
+        fightUIController.OnGameEnd(loser); 
+    }
 }
