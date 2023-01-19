@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wizardName: 7
   wizardIcon: {fileID: 21300000, guid: 8ff2ba5594fb14b4ca60d9bc0ce2ef3c, type: 3}
+  wizardPrefab: {fileID: 8309844981562005844, guid: ad9aee397efb59c4c951d061547fe398, type: 3}
