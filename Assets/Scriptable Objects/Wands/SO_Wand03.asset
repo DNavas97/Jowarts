@@ -15,4 +15,4 @@ MonoBehaviour:
   wandName: 2
   wandIcon: {fileID: 21300000, guid: a880bf2fac704de46adbda1d4408049e, type: 3}
   wandShot: {fileID: 522617420892459418, guid: 85741d87e1ff1a748ac7690ca203ba32, type: 3}
-  description: escudo rapido
+  description: Menor cooldown de escudo

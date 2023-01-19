@@ -15,4 +15,4 @@ MonoBehaviour:
   wandName: 4
   wandIcon: {fileID: 21300000, guid: a424316cee66db94f9ed643f9313fde9, type: 3}
   wandShot: {fileID: 785554266531849503, guid: 561da4c5eb1889941ae2131a5b6cbf7e, type: 3}
-  description: veneno
+  description: 'Envenena al oponente '
