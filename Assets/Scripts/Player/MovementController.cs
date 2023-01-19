@@ -13,7 +13,7 @@ public class MovementController : MonoBehaviour
     private Vector3 _velocity;
     private CharacterController _characterController;
     private Player _player;
-    private bool _gameEnded = false;
+    private bool _movementEnabled;
 
     private KeyCode _jumpButton, _fireButton, _shieldButton;
     private string _horizontalButton;
@@ -36,6 +36,7 @@ public class MovementController : MonoBehaviour
 
     public void Initialize(Player player)
     {
+        CountdownMenu.OnGameStart.AddListener(OnGameStart);
         _player = player;
 
         var playerID = _player.GetPlayerID();
@@ -52,7 +53,7 @@ public class MovementController : MonoBehaviour
     
     private void InputHandler()
     {
-        if(_gameEnded) return;
+        if(!_movementEnabled) return;
         
         JumpHandler();
         MovementHandler();
@@ -95,7 +96,8 @@ public class MovementController : MonoBehaviour
         _characterController.Move(_velocity * Time.deltaTime);
     }
 
-    private void OnGameEnd() => _gameEnded = true;
+    private void OnGameEnd() => _movementEnabled = false;
+    private void OnGameStart() => _movementEnabled = true;
 
     #endregion
 }
