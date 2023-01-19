@@ -5,7 +5,10 @@ public class MagicProjectile : MonoBehaviour
     #region Public Variables
 
     #endregion
+    
     #region Private Variables
+    
+    [SerializeField] private Transform _projectileSpawn;
     
     private Rigidbody _rigidbody;
     private float _speed;
@@ -69,7 +72,7 @@ public class MagicProjectile : MonoBehaviour
         Destroy(gameObject);
     }
     
-    public void Initialize(Player player, int damage, float speed, int instaKillProb, int posionDamage, float healMultiplier)
+    public void Initialize(Player player, int damage, float speed, int instaKillProb, int posionDamage, float healMultiplier, GameObject prefab)
     {
         _damage = damage;
         _ownPlayer = player;
@@ -77,6 +80,8 @@ public class MagicProjectile : MonoBehaviour
         _speed = speed;
         _poisonDamage = posionDamage;
         _healMultiplier = healMultiplier;
+        
+        Instantiate(prefab, _projectileSpawn);
         
         TryGetComponent(out _rigidbody);
 

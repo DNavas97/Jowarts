@@ -51,7 +51,17 @@ namespace UI.Lobby
             HandleSelectionInputs();
             HandleSubmitInput();
             HandleBackInput();
+            HandleInfoInput();
             CheckForMatchStart();
+        }
+
+        private void HandleInfoInput()
+        {
+            if (Input.GetKeyDown(GlobalParams.InfoButtonP1))
+                _player1Content.OnShowInfoClicked();
+
+            if(Input.GetKeyDown(GlobalParams.InfoButtonP2))
+                _player2Content.OnShowInfoClicked();
         }
 
         #endregion

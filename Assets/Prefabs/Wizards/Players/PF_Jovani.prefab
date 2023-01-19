@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _magicProjectilePrefab: {fileID: 5340683195203395140, guid: c4ff025ef8e0ea341a1ccd8f015679c6, type: 3}
-  _shieldPrefab: {fileID: 7858656554339846009, guid: 52948f8b791a2e945b72443d56787a94, type: 3}
+  _redShield: {fileID: 7858656554339846009, guid: d5616be32fb03c849b3bc4f06b165327, type: 3}
+  _blueShield: {fileID: 7858656554339846009, guid: 52948f8b791a2e945b72443d56787a94, type: 3}
   OnFireReady:
     m_PersistentCalls:
       m_Calls: []
@@ -197,7 +198,7 @@ GameObject:
   - component: {fileID: 5120465990705576503}
   - component: {fileID: 3258568946998373127}
   m_Layer: 0
-  m_Name: PF_JovaniPlayer
+  m_Name: PF_Jovani
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

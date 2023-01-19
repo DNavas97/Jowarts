@@ -7,4 +7,5 @@ public class WizardSO : ScriptableObject
     public Sprite wizardIcon;
     public GameObject wizardPrefab;
     public GameObject previewPrefab;
+    [TextArea(5, 10)] public string description;
 }

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768514921}
   m_LocalRotation: {x: -0.014321205, y: 0.70690846, z: -0.70701504, w: -0.01432035}
-  m_LocalPosition: {x: -0.12843575, y: 0.059281945, z: 0.51199615}
+  m_LocalPosition: {x: -0.165, y: 0.1, z: -0.021}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _magicProjectilePrefab: {fileID: 5340683195203395140, guid: c4ff025ef8e0ea341a1ccd8f015679c6, type: 3}
-  _shieldPrefab: {fileID: 7858656554339846009, guid: 52948f8b791a2e945b72443d56787a94, type: 3}
+  _redShield: {fileID: 7858656554339846009, guid: d5616be32fb03c849b3bc4f06b165327, type: 3}
+  _blueShield: {fileID: 7858656554339846009, guid: 52948f8b791a2e945b72443d56787a94, type: 3}
   OnFireReady:
     m_PersistentCalls:
       m_Calls: []

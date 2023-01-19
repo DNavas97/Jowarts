@@ -19,7 +19,10 @@ namespace Persistent_Data
         public static KeyCode FireInputP2 = KeyCode.Joystick2Button2;
 
         public static KeyCode BackButtonP1 = ShieldInputP1;
-        public static KeyCode BackButtonP2 = ShieldInputP2;
+        public static KeyCode BackButtonP2 = ShieldInputP2;        
+        
+        public static KeyCode InfoButtonP1 = FireInputP1;
+        public static KeyCode InfoButtonP2 = FireInputP2;
 
         #endregion
 
@@ -27,7 +30,7 @@ namespace Persistent_Data
         
         public static float BaseFireCooldown       = 1f;
         public static float BaseShieldCooldown     = 3f;
-        public static float BasePlayerSpeed        = 3.5f;
+        public static float BasePlayerSpeed        = 1.75f;
         public static float BasePlayerJump         = 7.5f;
         public static int   BaseProjectileDamage   = 10;
         public static float BaseProjectileSpeed    = 15.0f;
@@ -58,7 +61,7 @@ namespace Persistent_Data
 
         #region Wand Synergies
 
-        public static float WandProjectileSpeedMultiplier    = 0.5f;
+        public static float WandProjectileSpeedMultiplier    = 0.25f;
         public static float WandProjectileCooldownMultiplier = 0.5f;
         public static float WandShieldCooldownMultiplier     = 0.2f;
         public static int   WandInstaKillProbMultiplier      = 4;

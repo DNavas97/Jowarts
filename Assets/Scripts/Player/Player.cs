@@ -209,6 +209,7 @@ public class Player : MonoBehaviour
         _magicSpawner.SetProjectileSize(_projectileSize);
         _magicSpawner.SetProjectileHealMultiplier(_projectileHeal);
         _magicSpawner.SetShieldHealMultiplier(_shieldHeal);
+        _magicSpawner.SetParticle(_wandSo.wandShot);
     }
 
     public void Heal(int amount)
@@ -247,6 +248,6 @@ public class Player : MonoBehaviour
     public void UpdateShieldCooldownView(float f) => _fightGameController.OnShieldCooldownUpdated(this, f);
 
     public void UpdateFireCooldownView(float f) =>_fightGameController.OnFireCooldownUpdated(this, f);
-    
+
     #endregion
 }

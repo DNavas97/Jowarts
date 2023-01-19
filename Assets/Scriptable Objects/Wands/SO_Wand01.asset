@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wandName: 0
   wandIcon: {fileID: 21300000, guid: 6a0e06ec08ea8b242801e24ff7a05e6d, type: 3}
+  wandShot: {fileID: 8334448658872934137, guid: b2f390cfe3d01104db1213bba4482ae9, type: 3}
+  description: rapida
