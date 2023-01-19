@@ -16,4 +16,4 @@ MonoBehaviour:
   wizardIcon: {fileID: 21300000, guid: 47df0f4f8abea42489ef716b131336c2, type: 3}
   wizardPrefab: {fileID: 1453532399186487107, guid: be7be28368397b14091a7b8888ccb20b, type: 3}
   previewPrefab: {fileID: 8551096015008642144, guid: aec8cee2de8b9a34f8ec8c80990a0d7b, type: 3}
-  description: Es lista
+  description: Mas rango de disparo
