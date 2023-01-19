@@ -56,7 +56,7 @@ public class MagicProjectile : MonoBehaviour
     private void CheckPlayerCollision(Collider other)
     {
         var collidedPlayer = other.GetComponent<Player>();
-        if(collidedPlayer == null || collidedPlayer.GetPlayerID() == _playerID) return;
+        if(collidedPlayer == null || collidedPlayer.PlayerId == _playerID) return;
         
         if(_poisonDamage != 0) collidedPlayer.GetPoisoned(_poisonDamage);
         if (_healMultiplier > 0)
@@ -73,7 +73,7 @@ public class MagicProjectile : MonoBehaviour
     {
         _damage = damage;
         _ownPlayer = player;
-        _playerID = _ownPlayer.GetPlayerID();
+        _playerID = _ownPlayer.PlayerId;
         _speed = speed;
         _poisonDamage = posionDamage;
         _healMultiplier = healMultiplier;

@@ -173,15 +173,11 @@ namespace UI.Lobby
             {
                 currentSelection++;
                 if (currentSelection > _wandDB.Count -1) currentSelection = 0;
-                
-                playerContent.OnRightButtonClicked();
             }
             else
             {
                 currentSelection--;
                 if (currentSelection < 0) currentSelection = _wandDB.Count -1;
-                
-                playerContent.OnLeftButtonClicked();
             }
 
             if (playerID == PlayerID.Player1) _player1SelectedWand = currentSelection;

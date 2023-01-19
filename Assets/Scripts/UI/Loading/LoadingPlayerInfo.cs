@@ -1,3 +1,4 @@
+using EWorldsCore.Base.Scripts.Utils;
 using Persistent_Data;
 using TMPro;
 using UnityEngine;
@@ -32,8 +33,8 @@ public class LoadingPlayerInfo : MonoBehaviour
     public void Initialize(WizardSO wizard, WandSO wand)
     {
         wandImage.sprite = wand.wandIcon;
-        wizardNameText.text = wizard.wizardName.ToString();
-        wizardWandText.text = wand.wandName.ToString();
+        wizardNameText.text = EnumUtils.GetEnumDescription(wizard.wizardName);
+        wizardWandText.text = EnumUtils.GetEnumDescription(wand.wandName);
     }
 
     private void Update()

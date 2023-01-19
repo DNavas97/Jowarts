@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class FightGameController : MonoBehaviour
 {
@@ -13,9 +12,10 @@ public class FightGameController : MonoBehaviour
     
     #region Private Variables
 
-    [SerializeField] private Player _player1, _player2;
+    [SerializeField] private Transform _player1Spawn, _player2Spawn;
     [SerializeField] private FightUIController fightUIController;
 
+    private Player _player1, _player2;
     private WizardSO _player1Wizard, _player2Wizard;
     private WandSO _player1Wand, _player2Wand;
 
@@ -38,14 +38,17 @@ public class FightGameController : MonoBehaviour
     private void Initialize()
     {
         var data = PersistentData.Instance;
-        
+
         _player1Wizard = data.WizardP1;
         _player2Wizard = data.WizardP2;
         _player1Wand = data.WandP1;
         _player2Wand = data.WandP2;
+
+        _player1 = Instantiate(_player1Wizard.wizardPrefab, _player1Spawn).GetComponent<Player>();
+        _player2 = Instantiate(_player2Wizard.wizardPrefab, _player2Spawn).GetComponent<Player>();
         
-        _player1.Initialize(this, _player1Wizard, _player1Wand);
-        _player2.Initialize(this, _player2Wizard, _player2Wand);
+        _player1.Initialize(Player.PlayerID.Player1, this, _player1Wizard, _player1Wand);
+        _player2.Initialize(Player.PlayerID.Player2, this, _player2Wizard, _player2Wand);
         
         fightUIController.Initialize(_player1Wizard, _player2Wizard);
     }

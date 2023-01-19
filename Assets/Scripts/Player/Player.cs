@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    #region Public Variables
+
+    public PlayerID PlayerId { get; private set; }
+
+    #endregion
+    
     #region Private Variables
 
     private FightGameController _fightGameController;
     private WizardSO _wizardSo;
     private WandSO _wandSo;
     
-    [SerializeField] private PlayerID _playerID;
     [SerializeField] private MovementController _movementController;
     [SerializeField] private MagicSpawner _magicSpawner;
     
@@ -44,8 +49,9 @@ public class Player : MonoBehaviour
 
     #region Utility Methods
 
-    public void Initialize(FightGameController gc, WizardSO wizard, WandSO wand)
+    public void Initialize(PlayerID id, FightGameController gc, WizardSO wizard, WandSO wand)
     {
+        PlayerId = id;
         TryGetComponent(out _animationController);
         
         _fightGameController = gc;
@@ -88,8 +94,6 @@ public class Player : MonoBehaviour
         SetWizardSynergy();
         SetWandSynergy();
     }
-
-    public PlayerID GetPlayerID() => _playerID;
 
     public void Fire() => _magicSpawner.Fire();
 

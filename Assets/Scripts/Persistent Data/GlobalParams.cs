@@ -28,7 +28,7 @@ namespace Persistent_Data
         public static float BaseFireCooldown       = 1f;
         public static float BaseShieldCooldown     = 3f;
         public static float BasePlayerSpeed        = 3.5f;
-        public static float BasePlayerJump         = 5.0f;
+        public static float BasePlayerJump         = 7.5f;
         public static int   BaseProjectileDamage   = 10;
         public static float BaseProjectileSpeed    = 15.0f;
         public static int   BaseInstaKillProb      = 0;
@@ -48,7 +48,7 @@ namespace Persistent_Data
         public static int   HarryResurrections               = 1;
         public static float RonSpeedMultiplier               = 0.5f;
         public static float HermioneProjectileSizeMultiplier = 0.25f;
-        public static float DracoJumpMultiplier              = 0.5f;
+        public static float DracoJumpMultiplier              = 0.25f;
         public static float VoldemortDamageMultiplier        = 0.25f;
         public static float HagridHealthMultiplier           = 0.2f;
         public static float SnapeShieldCooldownMultiplier    = 0.3f;
