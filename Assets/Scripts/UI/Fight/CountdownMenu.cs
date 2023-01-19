@@ -47,7 +47,7 @@ public class CountdownMenu : MonoBehaviour
             yield return new WaitForSecondsRealtime(1f);
         }
 
-        _numberText.text = "Ustedes pelien!";
+        _numberText.text = "A peliar!";
         
         yield return new WaitForSecondsRealtime(1f);
 

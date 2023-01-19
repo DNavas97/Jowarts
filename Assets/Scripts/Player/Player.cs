@@ -14,7 +14,9 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerID _playerID;
     [SerializeField] private MovementController _movementController;
     [SerializeField] private MagicSpawner _magicSpawner;
-
+    
+    private AnimationController _animationController;
+    
     [NonSerialized] public int CurrentHealth;
     [NonSerialized] public int MaxHealth;
     
@@ -44,6 +46,8 @@ public class Player : MonoBehaviour
 
     public void Initialize(FightGameController gc, WizardSO wizard, WandSO wand)
     {
+        TryGetComponent(out _animationController);
+        
         _fightGameController = gc;
         _wizardSo = wizard;
         _wandSo = wand;
@@ -53,6 +57,8 @@ public class Player : MonoBehaviour
         
         _movementController.Initialize(this);
         _magicSpawner.SetPlayer(this);
+        
+        _magicSpawner.OnFire.AddListener(TriggerAttackAnimation);
 
         ApplySynergies();
     }
@@ -86,6 +92,7 @@ public class Player : MonoBehaviour
     public PlayerID GetPlayerID() => _playerID;
 
     public void Fire() => _magicSpawner.Fire();
+
     public void Shield() => _magicSpawner.Shield(transform);
 
     public void TakeDamage(int damage)
@@ -226,6 +233,16 @@ public class Player : MonoBehaviour
             duration--;
         }
     }
+    
+    private void TriggerAttackAnimation() => _animationController.OnAttack();
 
+    public void TriggerJumpAnimation() => _animationController.OnJump();
+
+    public void UpdateHorizontalInput(float horizontalInput) => _animationController.UpdateHorizontalInput(horizontalInput);
+
+    public void UpdateShieldCooldownView(float f) => _fightGameController.OnShieldCooldownUpdated(this, f);
+
+    public void UpdateFireCooldownView(float f) =>_fightGameController.OnFireCooldownUpdated(this, f);
+    
     #endregion
 }

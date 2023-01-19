@@ -44,7 +44,8 @@ public class LoadingPlayerInfo : MonoBehaviour
             
         _readyText.SetActive(true);
         _tipText.SetActive(false);
-        
+
+        _ready = true;
         OnPlayerReady?.Invoke();
     }
 

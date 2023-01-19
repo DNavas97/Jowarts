@@ -77,8 +77,10 @@ public class MovementController : MonoBehaviour
         {
             _velocity.y = -1f;
 
-            if (Input.GetKeyDown(_jumpButton))
-                _velocity.y = _jumpForce;
+            if (!Input.GetKeyDown(_jumpButton)) return;
+            
+            _velocity.y = _jumpForce;
+            _player.TriggerJumpAnimation();
         }
         else
         {
@@ -88,10 +90,15 @@ public class MovementController : MonoBehaviour
 
     private void MovementHandler()
     {
-        var horizontalInput = new Vector3(Input.GetAxis(_horizontalButton), 0, 0);
-        var movementVector = transform.TransformDirection(horizontalInput);
+        var horizontalInput = Input.GetAxis(_horizontalButton);
+        if (horizontalInput != 0) horizontalInput = horizontalInput > 0 ? 1 : -1;
+        
+        _player.UpdateHorizontalInput(horizontalInput);
+        
+        var horizontalvector = new Vector3(horizontalInput, 0, 0);
+        var movementVector = transform.TransformDirection(horizontalvector);
         var finalVector = _player.GetPlayerID() == Player.PlayerID.Player1 ? movementVector : -movementVector;
-
+        
         _characterController.Move(finalVector * _playerSpeed * Time.deltaTime);
         _characterController.Move(_velocity * Time.deltaTime);
     }
