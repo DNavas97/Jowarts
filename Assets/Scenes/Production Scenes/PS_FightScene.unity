@@ -972,38 +972,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2767034251465473647}
     m_Modifications:
-    - target: {fileID: 1320256646906979748, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1320256646906979748, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1320256646906979748, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1320256646906979748, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2866445240317092283, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2866445240317092283, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2866445240317092283, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2866445240317092283, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2938453253107036478, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -1015,6 +983,10 @@ PrefabInstance:
     - target: {fileID: 2938453253107036478, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
       propertyPath: m_Color.r
       value: 0.41568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484500919698199781, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_fontSize
+      value: 222.5
       objectReference: {fileID: 0}
     - target: {fileID: 8749843902456495704, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
       propertyPath: m_Name

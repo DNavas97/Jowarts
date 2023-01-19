@@ -235,38 +235,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1930217708989156737, guid: e3ee575b6f9b456428031638c038a4f1, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930217708989156737, guid: e3ee575b6f9b456428031638c038a4f1, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930217708989156737, guid: e3ee575b6f9b456428031638c038a4f1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930217708989156737, guid: e3ee575b6f9b456428031638c038a4f1, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3412695428620028318, guid: e3ee575b6f9b456428031638c038a4f1, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3412695428620028318, guid: e3ee575b6f9b456428031638c038a4f1, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3412695428620028318, guid: e3ee575b6f9b456428031638c038a4f1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3412695428620028318, guid: e3ee575b6f9b456428031638c038a4f1, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3ee575b6f9b456428031638c038a4f1, type: 3}
 --- !u!224 &1127136890 stripped
@@ -405,6 +373,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8749843902456495707}
     m_Modifications:
+    - target: {fileID: 1232031887014009508, guid: e24fe3d1bcf0fa444aa11463dc1c3d09, type: 3}
+      propertyPath: m_fontSize
+      value: 222.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1259668266781168338, guid: e24fe3d1bcf0fa444aa11463dc1c3d09, type: 3}
       propertyPath: m_Name
       value: CountdownMenu

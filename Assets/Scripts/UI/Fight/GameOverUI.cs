@@ -1,6 +1,7 @@
 using System.Collections;
 using Persistent_Data;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _winnerText;
     [SerializeField] private Button _rematchButton, _menuButton;
     [SerializeField] private Transform buttonLayout;
+    [SerializeField] private Color32 yellow;
     
     private Player.PlayerID _winner = Player.PlayerID.None;
     private bool _canInput;
@@ -50,10 +52,10 @@ public class GameOverUI : MonoBehaviour
     
     private void HandleSelectionInput()
     {
-        var vertical = _winner == Player.PlayerID.Player1 ? "VerticalP2" : "VerticalP1";
-        var verticalInput = Input.GetAxis(vertical);
+        var horizontal = _winner == Player.PlayerID.Player1 ? "HorizontalP2" : "HorizontalP1";
+        var horizontalInput = Input.GetAxis(horizontal);
 
-        if (verticalInput == 0 || !_canInput) return;
+        if (horizontalInput == 0 || !_canInput) return;
         
         _selectedOption = _selectedOption == 0 ? 1 : 0;
         _unselectedOption = _selectedOption == 0 ? 1 : 0;
@@ -69,7 +71,7 @@ public class GameOverUI : MonoBehaviour
 
         if (!Input.GetKeyDown(confirmation)) return;
         
-        var button = buttonLayout.GetChild(_selectedOption).GetComponent<Button>();
+        var button = buttonLayout.GetChild(_selectedOption).GetComponentInChildren<Button>();
         button.onClick.Invoke();
     }
 
@@ -95,10 +97,10 @@ public class GameOverUI : MonoBehaviour
 
     private void OnButtonSelected()
     {
-        var selectedImage = buttonLayout.GetChild(_selectedOption).GetComponent<Image>();
-        var unselectedImage = buttonLayout.GetChild(_unselectedOption).GetComponent<Image>();
+        var selectedImage = buttonLayout.GetChild(_selectedOption).GetChild(0).GetComponent<Image>();
+        var unselectedImage = buttonLayout.GetChild(_unselectedOption).GetChild(0).GetComponent<Image>();
         
-        selectedImage.color = Color.yellow;
+        selectedImage.color = yellow;
         unselectedImage.color = Color.white;
     }
     
