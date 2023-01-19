@@ -246,7 +246,11 @@ public class Player : MonoBehaviour
 
     public void TriggerJumpAnimation() => _animationController.OnJump();
 
-    public void UpdateHorizontalInput(float horizontalInput) => _animationController.UpdateHorizontalInput(horizontalInput);
+    public void UpdateHorizontalInput(float horizontalInput)
+    {
+        if (PlayerId == PlayerID.Player2) horizontalInput *= -1;
+        _animationController.UpdateHorizontalInput(horizontalInput);
+    }
 
     public void UpdateShieldCooldownView(float f) => _fightGameController.OnShieldCooldownUpdated(this, f);
 

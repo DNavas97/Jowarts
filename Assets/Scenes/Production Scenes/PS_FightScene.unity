@@ -662,7 +662,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061141109}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 7.873562, z: 1}
@@ -4711,6 +4711,70 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2767034251465473647}
     m_Modifications:
+    - target: {fileID: 3274179464329202575, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274179464329202575, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274179464329202575, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274179464329202575, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4203337796406474344, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4203337796406474344, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4203337796406474344, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4203337796406474344, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172988906278660657, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172988906278660657, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172988906278660657, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172988906278660657, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407915884943890390, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407915884943890390, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407915884943890390, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407915884943890390, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8749843902456495704, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
       propertyPath: m_Name
       value: FightMenu

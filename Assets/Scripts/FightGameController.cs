@@ -20,6 +20,7 @@ public class FightGameController : MonoBehaviour
     private WizardSO _player1Wizard, _player2Wizard;
     private WandSO _player1Wand, _player2Wand;
     private  PersistentData _persistentData;
+    private bool _winChecked;
     #endregion
 
     #region Unity LifeCycle
@@ -52,6 +53,10 @@ public class FightGameController : MonoBehaviour
 
     public void OnRoundEnd(Player loser)
     {
+        if(_winChecked) return;
+
+        _winChecked = true;
+        
         var winner = loser.PlayerId == Player.PlayerID.Player1 ? Player.PlayerID.Player2 : Player.PlayerID.Player1;
         var scene = SceneManager.GetActiveScene(); 
         

@@ -69,6 +69,7 @@ public class MagicProjectile : MonoBehaviour
         }
         var damage = _instaKill ? 9999 : _damage;
         collidedPlayer.TakeDamage(damage, false);
+        
         Destroy(gameObject);
     }
     

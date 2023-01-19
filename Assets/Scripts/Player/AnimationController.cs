@@ -5,6 +5,7 @@ public class AnimationController : MonoBehaviour
     #region Private Variables
 
     [SerializeField] private Animator _animator;
+    
     private static readonly int JumpTrigger = Animator.StringToHash("Jump");
     private static readonly int AttackTrigger = Animator.StringToHash("Attack");
     private static readonly int HorizontalInput = Animator.StringToHash("HorizontalInput");
