@@ -5,9 +5,11 @@ using UnityEngine.Events;
 public class MagicSpawner : MonoBehaviour
 {
     #region Private Variables
-
+    
     [SerializeField] private GameObject _magicProjectilePrefab;
-    [SerializeField] private GameObject _shieldPrefab;
+    [SerializeField] private GameObject _redShield, _blueShield;
+    
+    private GameObject _shieldPrefab;
 
     private Player _player;
     private int   _projectileDamage;
@@ -20,6 +22,7 @@ public class MagicSpawner : MonoBehaviour
     private Vector3 _projectileSize;
     private float _projectileHealMultiplier;
     private float _shieldHealMultiplier;
+    private GameObject _projectileParticle;
 
     private bool _canFire, _canShield;
     
@@ -40,7 +43,11 @@ public class MagicSpawner : MonoBehaviour
 
     #region Utility Methods
 
-    public void SetPlayer(Player player) => _player = player;
+    public void SetPlayer(Player player)
+    {
+        _player = player;
+        _shieldPrefab = player.PlayerId == Player.PlayerID.Player1 ? _redShield : _blueShield;
+    }
 
     public void Fire()
     {
@@ -50,7 +57,7 @@ public class MagicSpawner : MonoBehaviour
         var magicProjectile = prefab.GetComponent<MagicProjectile>();
         prefab.transform.localScale = _projectileSize;
         
-        magicProjectile.Initialize(_player, _projectileDamage, _projectileSpeed, _instaKillProbability, _poisonDamage, _projectileHealMultiplier);
+        magicProjectile.Initialize(_player, _projectileDamage, _projectileSpeed, _instaKillProbability, _poisonDamage, _projectileHealMultiplier, _projectileParticle);
 
         StartCoroutine(StartFireCooldown());
         OnFire?.Invoke();
@@ -123,6 +130,8 @@ public class MagicSpawner : MonoBehaviour
         
         _canShield = true;
     }
+
+    public void SetParticle(GameObject wandSoWandShot) => _projectileParticle = wandSoWandShot;
 
     #endregion
 }

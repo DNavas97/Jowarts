@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wandName: 1
   wandIcon: {fileID: 21300000, guid: b55418ff65e01dd4eb474afa4b53e580, type: 3}
+  wandShot: {fileID: 9006956769137580171, guid: e8ec6b0bad33d824c8a56b4e5882704f, type: 3}
+  description: cooldon rapido

@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _magicProjectilePrefab: {fileID: 5340683195203395140, guid: c4ff025ef8e0ea341a1ccd8f015679c6, type: 3}
-  _shieldPrefab: {fileID: 7858656554339846009, guid: 52948f8b791a2e945b72443d56787a94, type: 3}
+  _redShield: {fileID: 7858656554339846009, guid: d5616be32fb03c849b3bc4f06b165327, type: 3}
+  _blueShield: {fileID: 7858656554339846009, guid: 52948f8b791a2e945b72443d56787a94, type: 3}
   OnFireReady:
     m_PersistentCalls:
       m_Calls: []
@@ -149,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1b42e3a95274258ba21a7bf8804bb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skr: {fileID: 5256323238222181012}
   _movementController: {fileID: 1453532399186487134}
   _magicSpawner: {fileID: 1768514923}
 --- !u!143 &1989903414520183027
