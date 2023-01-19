@@ -27,8 +27,8 @@ public class LoadingMenu : MonoBehaviour
         player1Info.Initialize(persistenData.WizardP1, persistenData.WandP1);
         player2Info.Initialize(persistenData.WizardP2, persistenData.WandP2);
 
-        Instantiate(persistenData.WizardP1.wizardPrefab, _p1Spawn);
-        Instantiate(persistenData.WizardP2.wizardPrefab, _p2Spawn);
+        Instantiate(persistenData.WizardP1.previewPrefab, _p1Spawn);
+        Instantiate(persistenData.WizardP2.previewPrefab, _p2Spawn);
         
         player1Info.OnPlayerReady.AddListener(OnPlayerReady);
         player2Info.OnPlayerReady.AddListener(OnPlayerReady);

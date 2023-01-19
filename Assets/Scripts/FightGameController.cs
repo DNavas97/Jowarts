@@ -61,4 +61,9 @@ public class FightGameController : MonoBehaviour
     }
 
     #endregion
+
+    public void OnShieldCooldownUpdated(Player p, float f) => fightUIController.UpdateShieldCooldown(p, f);
+
+    public void OnFireCooldownUpdated(Player p, float f) => fightUIController.UpdateFireCooldown(p, f);
+
 }

@@ -6,4 +6,5 @@ public class WizardSO : ScriptableObject
     public WizardDB.WizardName wizardName;
     public Sprite wizardIcon;
     public GameObject wizardPrefab;
+    public GameObject previewPrefab;
 }

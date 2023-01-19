@@ -27,8 +27,9 @@ public class MagicSpawner : MonoBehaviour
 
     #region Events
 
-    public static UnityEvent OnFireReady   = new UnityEvent();
-    public static UnityEvent OnShieldReady = new UnityEvent();
+    public UnityEvent OnFireReady   = new UnityEvent();
+    public UnityEvent OnShieldReady = new UnityEvent();
+    public UnityEvent OnFire = new UnityEvent();
 
     #endregion
     
@@ -52,6 +53,7 @@ public class MagicSpawner : MonoBehaviour
         magicProjectile.Initialize(_player, _projectileDamage, _projectileSpeed, _instaKillProbability, _poisonDamage, _projectileHealMultiplier);
 
         StartCoroutine(StartFireCooldown());
+        OnFire?.Invoke();
     }
 
     public void Shield(Transform t)
@@ -82,21 +84,43 @@ public class MagicSpawner : MonoBehaviour
     public void SetInstaKillProb(int prob) => _instaKillProbability = prob;
     public void SetPoisonDamage(int dmg) => _poisonDamage = dmg;
     public void CanReflect(bool b) => _canReflect = b;
-    public void SetProjectileSize(float multiplier) => _projectileSize = Vector3.one * multiplier;
+    public void SetProjectileSize(float multiplier) => _projectileSize = new Vector3(0.1f, 0.1f, 0.1f) * multiplier;
     public void SetShieldHealMultiplier(float multiplier) => _shieldHealMultiplier = multiplier;
     public void SetProjectileHealMultiplier(float multiplier) => _projectileHealMultiplier = multiplier;
     
     private IEnumerator StartFireCooldown()
     {
         _canFire = false;
-        yield return new WaitForSecondsRealtime(_projectileCooldown);
+        
+        var t = 0f;
+    
+        while (t < 1)
+        {
+            t += Time.deltaTime / _projectileCooldown;
+
+            _player.UpdateFireCooldownView(t);
+
+            yield return null;
+        }
+        
         _canFire = true;
     }
 
     private IEnumerator StartShieldCooldown()
     {
         _canShield = false;
-        yield return new WaitForSecondsRealtime(_shieldCooldown);
+        
+        var t = 0f;
+    
+        while (t < 1)
+        {
+            t += Time.deltaTime / _shieldCooldown;
+
+            _player.UpdateShieldCooldownView(t);
+
+            yield return null;
+        }
+        
         _canShield = true;
     }
 

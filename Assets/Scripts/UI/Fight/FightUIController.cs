@@ -9,7 +9,8 @@ public class FightUIController : MonoBehaviour
     #region Private Variables
 
     [SerializeField] private GameOverUI _gameOverUI;
-    [SerializeField] private HealthBar player1Bar, player2Bar;
+    [SerializeField] private CountdownMenu _countdownMenu;
+    [SerializeField] private StatsContent player1Bar, player2Bar;
 
     #endregion
 
@@ -21,9 +22,10 @@ public class FightUIController : MonoBehaviour
 
     public void Initialize(WizardSO wizard1, WizardSO wizard2)
     {
+        _countdownMenu.Initialize();
+        
         UpdatePlayerIcon(Player.PlayerID.Player1, wizard1);
         UpdatePlayerIcon(Player.PlayerID.Player2, wizard2);
-        
     }
 
     private void UpdatePlayerIcon(Player.PlayerID player, WizardSO wizard)
@@ -47,4 +49,16 @@ public class FightUIController : MonoBehaviour
     }
 
     #endregion
+
+    public void UpdateShieldCooldown(Player player, float f)
+    {
+        var healthBar = player.GetPlayerID() == Player.PlayerID.Player1 ? player1Bar : player2Bar;
+        healthBar.UpdateShieldCooldownBar(f);
+    }
+
+    public void UpdateFireCooldown(Player player, float f)
+    {
+        var healthBar = player.GetPlayerID() == Player.PlayerID.Player1 ? player1Bar : player2Bar;
+        healthBar.UpdateFireCooldownBar(f);
+    }
 }
