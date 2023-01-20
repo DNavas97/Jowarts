@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using EWorldsCore.Base.Scripts.Utils;
 using Persistent_Data;
@@ -10,6 +11,9 @@ public class GameOverUI : MonoBehaviour
 {
     #region Private Variables
 
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _gryffindor;
+    
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private TextMeshProUGUI _winnerText;
     [SerializeField] private Button _rematchButton, _menuButton;
@@ -124,7 +128,10 @@ public class GameOverUI : MonoBehaviour
             t += Time.deltaTime / appearTime;
             
             _canvasGroup.alpha = t;
+            yield return null;
         }
+
+        _audioSource.PlayOneShot(_gryffindor);
 
         yield return new WaitForSecondsRealtime(2f);
 

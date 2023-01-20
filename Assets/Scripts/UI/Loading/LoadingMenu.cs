@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,15 +9,21 @@ public class LoadingMenu : MonoBehaviour
 
     [SerializeField] private LoadingPlayerInfo player1Info, player2Info;
     [SerializeField] private Transform _p1Spawn, _p2Spawn;
-
-    private int _playersReady = 0;
+    [SerializeField] private AudioClip _vsClip;
     
+    private int _playersReady = 0;
+    private bool _canStart;
+    
+    private AudioSource _audioSource;
     private WizardPreview _wizard1Preview;
     private WizardPreview _wizard2Preview;
+    private Coroutine _startCoroutine;
     
     #endregion
 
     #region Unity LifeCycle
+
+    private void Awake() => TryGetComponent(out _audioSource);
 
     private void Start() => Initialize();
 
@@ -37,6 +44,8 @@ public class LoadingMenu : MonoBehaviour
         player1Info.OnPlayerReady.AddListener(OnPlayerReady);
         player2Info.OnPlayerReady.AddListener(OnPlayerReady);
 
+        StartCoroutine(PlayVersusSFX());
+        
         persistenData.ResetCounter();
     }
 
@@ -47,9 +56,9 @@ public class LoadingMenu : MonoBehaviour
         
         _playersReady++;
         
-        if(_playersReady < 2) return;
+        if(_playersReady < 2 || !_canStart) return;
 
-        StartCoroutine(OnStart());
+        if(_startCoroutine == null) _startCoroutine = StartCoroutine(OnStart());
     }
 
     private IEnumerator OnStart()
@@ -58,6 +67,32 @@ public class LoadingMenu : MonoBehaviour
         
         SceneManager.LoadScene("PS_FightScene", LoadSceneMode.Single);
     }
+
+    private IEnumerator PlayVersusSFX()
+    {
+        var p1 = PersistentData.Instance.WizardP1;
+        var p2 = PersistentData.Instance.WizardP2;
+
+        _audioSource.clip = p1.loadingSFX;
+        _audioSource.Play();
+
+        yield return new WaitForSecondsRealtime(p1.loadingSFX.length + 0.2f);
+        
+        _audioSource.clip = _vsClip;
+        _audioSource.Play();
+        
+        yield return new WaitForSecondsRealtime(_vsClip.length + 0.2f);
+        
+        _audioSource.clip = p2.loadingSFX;
+        _audioSource.Play();
+        
+        yield return new WaitForSecondsRealtime(p2.loadingSFX.length + 0.2f);
+        
+        _canStart = true;
+        
+        if(_playersReady == 2 && _startCoroutine == null) StartCoroutine(OnStart());
+    }
+    
     
     #endregion
 }
