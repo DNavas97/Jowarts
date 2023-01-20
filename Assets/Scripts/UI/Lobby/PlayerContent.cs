@@ -8,19 +8,25 @@ using UnityEngine.UI;
 public class PlayerContent : MonoBehaviour
 {
     #region Private Variables
-
+    
     [SerializeField] private TextMeshProUGUI _wizardNameText, _wandNameText, _wandInfoNameText, _wandInfoText, wizardInfoText, wizardInfoNameText;
     [SerializeField] private Image _wizardIcon, _wandIcon;
     [SerializeField] private CanvasGroup _leftGroupCanvas, _rightGroupCanvas, _canvasInfo;
-
+    
+    private AudioSource _audioSource;
     private Coroutine _infoCoroutine;
     private bool _infoShowed;
+    private WizardSO _wizard;
 
     #endregion
 
     #region Unity LifeCycle
 
-    private void Awake() => _leftGroupCanvas.alpha = _rightGroupCanvas.alpha = 0f;
+    private void Awake()
+    {
+        TryGetComponent(out _audioSource);
+        _leftGroupCanvas.alpha = _rightGroupCanvas.alpha = 0f;
+    }
 
     #endregion
 
@@ -28,6 +34,8 @@ public class PlayerContent : MonoBehaviour
 
     public void UpdatePlayerContent(WizardSO wizard)
     {
+        _wizard = wizard;
+        
         var name = wizard.wizardName == WizardDB.WizardName.Gozoso ? "?" : EnumUtils.GetEnumDescription(wizard.wizardName);
         _wizardIcon.sprite = wizard.wizardIcon;
         _wizardNameText.text = name;
@@ -45,7 +53,12 @@ public class PlayerContent : MonoBehaviour
         _wandInfoText.text = wand.description;
     }
 
-    public void OnWizardFixed() => _rightGroupCanvas.alpha = _leftGroupCanvas.alpha = 1;
+    public void OnWizardFixed()
+    {
+        _rightGroupCanvas.alpha = _leftGroupCanvas.alpha = 1;
+        PlayIntroductionSFX(_wizard.introductionSFX);
+    }
+
     public void OnWizardUnfixed() => _rightGroupCanvas.alpha = _leftGroupCanvas.alpha = 0;
 
     public void OnWandFixed() => _rightGroupCanvas.alpha = _leftGroupCanvas.alpha = 0;
@@ -72,6 +85,13 @@ public class PlayerContent : MonoBehaviour
             
             yield return null;
         }
+    }
+
+    private void PlayIntroductionSFX(AudioClip clip)
+    {
+        _audioSource.Stop();
+        _audioSource.clip = clip;
+        _audioSource.Play();
     }
 
     #endregion

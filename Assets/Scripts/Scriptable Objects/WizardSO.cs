@@ -7,5 +7,10 @@ public class WizardSO : ScriptableObject
     public Sprite wizardIcon;
     public GameObject wizardPrefab;
     public GameObject previewPrefab;
+    
+    public AudioClip introductionSFX;
+    public AudioClip loadingSFX;
+    public AudioClip winSFX;
+    
     [TextArea(5, 10)] public string description;
 }

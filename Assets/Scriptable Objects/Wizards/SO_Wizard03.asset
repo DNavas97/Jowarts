@@ -16,4 +16,7 @@ MonoBehaviour:
   wizardIcon: {fileID: 21300000, guid: 08ec844ff0db37746a2c9cef945d04e2, type: 3}
   wizardPrefab: {fileID: 1453532399186487107, guid: 12a8943cb1ddc9049b3e612d7738ca67, type: 3}
   previewPrefab: {fileID: 8309844981562005844, guid: ad9aee397efb59c4c951d061547fe398, type: 3}
+  introductionSFX: {fileID: 8300000, guid: 4a6dd7219e3ed004e89a8fec7af4d447, type: 3}
+  loadingSFX: {fileID: 8300000, guid: c2ac6bbea66b60849914bcc6d374d06d, type: 3}
+  winSFX: {fileID: 0}
   description: Resucita una vez por partida

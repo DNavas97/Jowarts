@@ -16,4 +16,7 @@ MonoBehaviour:
   wizardIcon: {fileID: 21300000, guid: 7491e164522e5f94ea86e304a3d403ad, type: 3}
   wizardPrefab: {fileID: 1453532399186487107, guid: d9158c183ee4dcd4f80d264a73b826f6, type: 3}
   previewPrefab: {fileID: 6096612333018082556, guid: de11e63e7c1e9f847b0f8ca34b56e3b6, type: 3}
+  introductionSFX: {fileID: 8300000, guid: 0744695e74a95bf4fb84c10595e2ff76, type: 3}
+  loadingSFX: {fileID: 8300000, guid: 19ab9e4531ee9cc4faa2d132b15def1f, type: 3}
+  winSFX: {fileID: 0}
   description: Salta mas alto

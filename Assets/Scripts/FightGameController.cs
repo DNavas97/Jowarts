@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,7 +16,9 @@ public class FightGameController : MonoBehaviour
 
     [SerializeField] private Transform _player1Spawn, _player2Spawn;
     [SerializeField] private FightUIController fightUIController;
-
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _punetaClip;
+    
     private Player _player1, _player2;
     private WizardSO _player1Wizard, _player2Wizard;
     private WandSO _player1Wand, _player2Wand;
@@ -64,6 +67,9 @@ public class FightGameController : MonoBehaviour
         
         _persistentData.SetRoundWinner(winner.PlayerId);
 
+        var clip = loser.GetWizard().wizardName == WizardDB.WizardName.Gozoso ? _punetaClip : winner.GetWizard().winSFX;
+        _audioSource.PlayOneShot(clip);
+        
         StartCoroutine(OnEndWait());
         OnRoundEnded.Invoke();
     }
