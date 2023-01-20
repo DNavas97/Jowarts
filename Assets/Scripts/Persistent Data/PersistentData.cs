@@ -109,6 +109,13 @@ public class PersistentData : MonoBehaviour
                 {
                     _audioSource.clip = _battleMusic;  
                     _audioSource.Play();
+                }    
+                break;
+            case "PS_FightScene2":
+                if (currentMusic != _battleMusic)
+                {
+                    _audioSource.clip = _battleMusic;  
+                    _audioSource.Play();
                 }
                 break;
             default:

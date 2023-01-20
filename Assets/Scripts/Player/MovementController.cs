@@ -1,3 +1,4 @@
+using System.Collections;
 using Persistent_Data;
 using UnityEngine;
 
@@ -103,8 +104,26 @@ public class MovementController : MonoBehaviour
         _characterController.Move(_velocity * Time.deltaTime);
     }
 
-    private void OnGameEnd() => _movementEnabled = false;
+    private void OnGameEnd()
+    {
+        _movementEnabled = false;
+        StartCoroutine(FallCoroutine());
+    }
+
     private void OnGameStart() => _movementEnabled = true;
 
-    #endregion
+    private IEnumerator FallCoroutine()
+    {
+        var t = 0f;
+        while (t < 1)
+        {
+            t += Time.deltaTime / 2f;
+            
+            _velocity.y -= _gravity * -2f * Time.deltaTime;
+            
+            yield return null;
+        }
+    }
+#endregion
+
 }
