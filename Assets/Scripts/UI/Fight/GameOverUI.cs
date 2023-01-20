@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -94,8 +95,8 @@ public class GameOverUI : MonoBehaviour
     {
         PersistentData.Instance.ResetCounter();
         
-        var scene = SceneManager.GetActiveScene(); 
-        SceneManager.LoadScene(scene.name);
+        var randomScene = Random.Range(1, 3);
+        SceneManager.LoadScene($"PS_FightScene{randomScene}", LoadSceneMode.Single);
     }
 
     private void OnMenuButonClicked() => SceneManager.LoadScene("PS_Lobby", LoadSceneMode.Single);

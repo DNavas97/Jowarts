@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class LoadingMenu : MonoBehaviour
 {
@@ -65,7 +66,8 @@ public class LoadingMenu : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1.5f);
         
-        SceneManager.LoadScene("PS_FightScene", LoadSceneMode.Single);
+        var randomScene = Random.Range(1, 3);
+        SceneManager.LoadScene($"PS_FightScene{randomScene}", LoadSceneMode.Single);
     }
 
     private IEnumerator PlayVersusSFX()

@@ -104,7 +104,7 @@ public class PersistentData : MonoBehaviour
                     _audioSource.Play();
                 }
                 break;
-            case "PS_FightScene":
+            case "PS_FightScene1":
                 if (currentMusic != _battleMusic)
                 {
                     _audioSource.clip = _battleMusic;  

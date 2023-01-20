@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -90,12 +90,14 @@ public class FightGameController : MonoBehaviour
         switch (_persistentData.RoundNumber)
         {
             case 1:
-                SceneManager.LoadScene(scene.name);
+                var randomScene = Random.Range(1, 3);
+                SceneManager.LoadScene($"PS_FightScene{randomScene}", LoadSceneMode.Single);
                 break;
             case 2:
                 if (_persistentData.Player1Rounds == _persistentData.Player2Rounds)
                 {
-                    SceneManager.LoadScene(scene.name);
+                    var sceneX = Random.Range(1, 3);
+                    SceneManager.LoadScene($"PS_FightScene{sceneX}", LoadSceneMode.Single);
                 }
                 else
                 {
