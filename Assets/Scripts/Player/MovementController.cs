@@ -25,7 +25,7 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         TryGetComponent(out _characterController);
-        FightGameController.OnGameEnded.AddListener(OnGameEnd);
+        FightGameController.OnRoundEnded.AddListener(OnGameEnd);
     }
 
     private void Update() => InputHandler();

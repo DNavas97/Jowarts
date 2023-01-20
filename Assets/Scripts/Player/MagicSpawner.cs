@@ -19,7 +19,7 @@ public class MagicSpawner : MonoBehaviour
     private int _instaKillProbability;
     private bool  _canReflect;
     private int   _poisonDamage;
-    private Vector3 _projectileSize;
+    private float _sizeMultiplier;
     private float _projectileHealMultiplier;
     private float _shieldHealMultiplier;
     private GameObject _projectileParticle;
@@ -55,9 +55,8 @@ public class MagicSpawner : MonoBehaviour
         
         var prefab = Instantiate(_magicProjectilePrefab, transform.position, Quaternion.identity);
         var magicProjectile = prefab.GetComponent<MagicProjectile>();
-        prefab.transform.localScale = _projectileSize;
-        
-        magicProjectile.Initialize(_player, _projectileDamage, _projectileSpeed, _instaKillProbability, _poisonDamage, _projectileHealMultiplier, _projectileParticle);
+
+        magicProjectile.Initialize(_player, _projectileDamage, _projectileSpeed, _instaKillProbability, _poisonDamage, _projectileHealMultiplier, _projectileParticle, _sizeMultiplier);
 
         StartCoroutine(StartFireCooldown());
         OnFire?.Invoke();
@@ -91,7 +90,7 @@ public class MagicSpawner : MonoBehaviour
     public void SetInstaKillProb(int prob) => _instaKillProbability = prob;
     public void SetPoisonDamage(int dmg) => _poisonDamage = dmg;
     public void CanReflect(bool b) => _canReflect = b;
-    public void SetProjectileSize(float multiplier) => _projectileSize = new Vector3(0.1f, 0.1f, 0.1f) * multiplier;
+    public void SetProjectileSize(float multiplier) => _sizeMultiplier = multiplier;
     public void SetShieldHealMultiplier(float multiplier) => _shieldHealMultiplier = multiplier;
     public void SetProjectileHealMultiplier(float multiplier) => _projectileHealMultiplier = multiplier;
     

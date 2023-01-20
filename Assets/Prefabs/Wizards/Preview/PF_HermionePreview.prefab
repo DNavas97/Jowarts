@@ -756,6 +756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2138056861188843717}
   - component: {fileID: -4776957935860180973}
+  - component: {fileID: -8726649167701656683}
   m_Layer: 0
   m_Name: PF_HermionePreview
   m_TagString: Untagged
@@ -790,7 +791,7 @@ Animator:
   m_GameObject: {fileID: 8551096015008642144}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: acb99e6b25aa8d44fa6be81095109252, type: 2}
+  m_Controller: {fileID: 9100000, guid: abfdf683f23444f4a81207451bc1cc77, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -800,6 +801,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-8726649167701656683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551096015008642144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da9b4c8d78c7424f94ee29feff32605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!1 &8608839654860863629
 GameObject:
   m_ObjectHideFlags: 0

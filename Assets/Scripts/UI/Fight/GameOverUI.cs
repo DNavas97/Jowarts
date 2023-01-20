@@ -2,7 +2,6 @@ using System.Collections;
 using EWorldsCore.Base.Scripts.Utils;
 using Persistent_Data;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -79,12 +78,12 @@ public class GameOverUI : MonoBehaviour
     public void ShowWithLoser(Player player)
     {
         _loser = player.PlayerId;
-        
-        _canvasGroup.alpha = 1;
+
+        StartCoroutine(ShowMenu());
+
         _winnerText.text = $"(HA PERDIDO {EnumUtils.GetEnumDescription(player.GetWizard().wizardName)})";
 
         OnButtonSelected();
-        StartCoroutine(OnGameEndBlockInput());
     }
 
     private void OnRematchButonClicked()
@@ -115,8 +114,18 @@ public class GameOverUI : MonoBehaviour
         _canInput = true;
     }
 
-    private IEnumerator OnGameEndBlockInput()
+    private IEnumerator ShowMenu()
     {
+        var t = 0f;
+        var appearTime = 0.3f;
+
+        while (t < 1)
+        {
+            t += Time.deltaTime / appearTime;
+            
+            _canvasGroup.alpha = t;
+        }
+
         yield return new WaitForSecondsRealtime(2f);
 
         _canInput = true;

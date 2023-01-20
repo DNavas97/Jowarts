@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
                 _playerSpeed += _playerSpeed * GlobalParams.RonSpeedMultiplier;
                 break;
             case WizardDB.WizardName.Hermione:
-                _projectileSize += _projectileSize * GlobalParams.HermioneProjectileSizeMultiplier;
+                _projectileSize *= _projectileSize * GlobalParams.HermioneProjectileSizeMultiplier;
                 break;
             case WizardDB.WizardName.Draco:
                 _jumpForce += _jumpForce * GlobalParams.DracoJumpMultiplier;
@@ -245,6 +245,8 @@ public class Player : MonoBehaviour
     private void TriggerAttackAnimation() => _animationController.OnAttack();
 
     public void TriggerJumpAnimation() => _animationController.OnJump();
+    public void TriggerDeathAnimation() => _animationController.OnDeath();
+    public void TriggerWinAnimation() => _animationController.OnWin();
 
     public void UpdateHorizontalInput(float horizontalInput)
     {

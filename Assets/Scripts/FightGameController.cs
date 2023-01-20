@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -7,7 +7,7 @@ public class FightGameController : MonoBehaviour
 {
     #region Public Variables
 
-    public static UnityEvent OnGameEnded = new UnityEvent();
+    public static UnityEvent OnRoundEnded = new UnityEvent();
 
     #endregion
     
@@ -57,11 +57,30 @@ public class FightGameController : MonoBehaviour
 
         _winChecked = true;
         
-        var winner = loser.PlayerId == Player.PlayerID.Player1 ? Player.PlayerID.Player2 : Player.PlayerID.Player1;
-        var scene = SceneManager.GetActiveScene(); 
-        
-        _persistentData.SetRoundWinner(winner);
+        var winner = loser.PlayerId == Player.PlayerID.Player1 ? _player2 : _player1;
 
+        loser.TriggerDeathAnimation();
+        winner.TriggerWinAnimation();
+        
+        _persistentData.SetRoundWinner(winner.PlayerId);
+
+        StartCoroutine(OnEndWait());
+        OnRoundEnded.Invoke();
+    }
+
+    #endregion
+
+    public void OnShieldCooldownUpdated(Player p, float f) => fightUIController.UpdateShieldCooldown(p, f);
+
+    public void OnFireCooldownUpdated(Player p, float f) => fightUIController.UpdateFireCooldown(p, f);
+
+    private void OnGameEnd(Player loser) => fightUIController.OnGameEnd(loser);
+
+    private IEnumerator OnEndWait()
+    {
+        var scene = SceneManager.GetActiveScene(); 
+        yield return new WaitForSecondsRealtime(3.5f);
+        
         switch (_persistentData.RoundNumber)
         {
             case 1:
@@ -86,17 +105,5 @@ public class FightGameController : MonoBehaviour
                 Debug.Log("Rondas: " + _persistentData.RoundNumber);
                 break;
         }
-    }
-
-    #endregion
-
-    public void OnShieldCooldownUpdated(Player p, float f) => fightUIController.UpdateShieldCooldown(p, f);
-
-    public void OnFireCooldownUpdated(Player p, float f) => fightUIController.UpdateFireCooldown(p, f);
-
-    private void OnGameEnd(Player loser)
-    {
-        OnGameEnded.Invoke();
-        fightUIController.OnGameEnd(loser); 
     }
 }

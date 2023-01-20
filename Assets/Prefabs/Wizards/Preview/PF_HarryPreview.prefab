@@ -886,6 +886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8654140947738690542}
   - component: {fileID: 6099796129614111178}
+  - component: {fileID: -3769082762954852535}
   m_Layer: 0
   m_Name: PF_HarryPreview
   m_TagString: Untagged
@@ -920,7 +921,7 @@ Animator:
   m_GameObject: {fileID: 8309844981562005844}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: acb99e6b25aa8d44fa6be81095109252, type: 2}
+  m_Controller: {fileID: 9100000, guid: abfdf683f23444f4a81207451bc1cc77, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -930,6 +931,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-3769082762954852535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8309844981562005844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da9b4c8d78c7424f94ee29feff32605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!1 &9046663278205642307
 GameObject:
   m_ObjectHideFlags: 0

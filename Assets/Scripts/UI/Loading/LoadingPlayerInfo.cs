@@ -20,7 +20,7 @@ public class LoadingPlayerInfo : MonoBehaviour
 
     #region Events
 
-    public UnityEvent OnPlayerReady = new UnityEvent();
+    public UnityEvent<Player.PlayerID> OnPlayerReady = new UnityEvent<Player.PlayerID>();
 
     #endregion
 
@@ -47,7 +47,7 @@ public class LoadingPlayerInfo : MonoBehaviour
         _tipText.SetActive(false);
 
         _ready = true;
-        OnPlayerReady?.Invoke();
+        OnPlayerReady?.Invoke(id);
     }
 
     #endregion

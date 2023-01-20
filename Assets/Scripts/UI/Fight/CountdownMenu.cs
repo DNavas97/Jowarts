@@ -10,7 +10,7 @@ public class CountdownMenu : MonoBehaviour
 
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private TextMeshProUGUI _numberText;
-    [SerializeField] private Image _gradientImage, _shadowImage;
+    [SerializeField] private Image _gradientImage;
 
     private int _countDownMax = 3;
 
@@ -30,27 +30,48 @@ public class CountdownMenu : MonoBehaviour
 
     #region Utility Methods
 
-    public void Initialize()
-    {
-        StartCoroutine(OnCountDownStart());
-    }
+    public void Initialize() => StartCoroutine(ShowCoroutine());
 
-    private IEnumerator OnCountDownStart()
+    private IEnumerator ShowCoroutine()
     {
-        _canvasGroup.alpha = 1;
-        var count = _countDownMax;
+        var t = 0f;
+        var apppearTime = 0.5f;
 
         var roundNumber = PersistentData.Instance.RoundNumber + 1 == 3 ? "Final" : $"{PersistentData.Instance.RoundNumber + 1}";
         _numberText.text = $"Ronda {roundNumber}";
-        yield return new WaitForSecondsRealtime(2f);
         
+        while (t < 1)
+        {
+            t += Time.deltaTime / apppearTime;
+            
+            _canvasGroup.alpha = t;
+            _numberText.transform.localScale = new Vector3(t, t, t);
+            _gradientImage.transform.localScale = new Vector3(1, t, 1);
+
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(1.5f);
+        
+
+        StartCoroutine(OnCountDownStart());
+    }
+    
+    private IEnumerator OnCountDownStart()
+    {
+        _numberText.text = "Listos?";
+
+        yield return new WaitForSecondsRealtime(1.5f);
+        /*
+        var count = _countDownMax;
+
         while (count > 0)
         {
             _numberText.text = count.ToString();
             count--;
             yield return new WaitForSecondsRealtime(1f);
         }
-
+        */
         _numberText.text = "A peliar!";
         
         yield return new WaitForSecondsRealtime(1f);

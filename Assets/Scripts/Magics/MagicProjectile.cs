@@ -9,6 +9,7 @@ public class MagicProjectile : MonoBehaviour
     #region Private Variables
     
     [SerializeField] private Transform _projectileSpawn;
+    [SerializeField] private GameObject _instakillParticle;
     
     private Rigidbody _rigidbody;
     private float _speed;
@@ -73,7 +74,7 @@ public class MagicProjectile : MonoBehaviour
         Destroy(gameObject);
     }
     
-    public void Initialize(Player player, int damage, float speed, int instaKillProb, int posionDamage, float healMultiplier, GameObject prefab)
+    public void Initialize(Player player, int damage, float speed, int instaKillProb, int posionDamage, float healMultiplier, GameObject prefab, float sizeMultiplier)
     {
         _damage = damage;
         _ownPlayer = player;
@@ -82,19 +83,24 @@ public class MagicProjectile : MonoBehaviour
         _poisonDamage = posionDamage;
         _healMultiplier = healMultiplier;
         
-        Instantiate(prefab, _projectileSpawn);
+        transform.localScale *= sizeMultiplier;
         
+        var instakill = Random.Range(0, 100 + 1);
+        var isInstakill = instakill <= instaKillProb;
+        
+        if (isInstakill) OnInstakillSpawned();
+
+        var particlePrefab = isInstakill ? _instakillParticle : prefab;
+        var particle = Instantiate(particlePrefab, _projectileSpawn);
+        var particleMultiplier = sizeMultiplier == 1 ? sizeMultiplier : sizeMultiplier * 3;
+        particle.transform.localScale *=  sizeMultiplier * particleMultiplier;
+
         TryGetComponent(out _rigidbody);
 
         var speedDirectionMultiplier = _playerID == Player.PlayerID.Player1 ? 1 : -1;
         _speed = speed * speedDirectionMultiplier;
         
         transform.SetParent(null);
-        
-        if(instaKillProb == 0) return;
-        
-        var instakill = Random.Range(0, 100 + 1);
-        if (instakill <= instaKillProb) OnInstakillSpawned();
     }
 
     public Player.PlayerID PlayerID => _playerID;
@@ -107,7 +113,11 @@ public class MagicProjectile : MonoBehaviour
 
     public int GetDamage() => _damage;
 
-    private void OnInstakillSpawned() => _instaKill = true;
+    private void OnInstakillSpawned()
+    {
+        //Avada Kedaavra
+        _instaKill = true;
+    }
 
     #endregion
 }
