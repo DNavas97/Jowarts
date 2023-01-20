@@ -18,5 +18,5 @@ MonoBehaviour:
   previewPrefab: {fileID: 6018249863255421966, guid: 1cf617769d0431e4fa28769c52465485, type: 3}
   introductionSFX: {fileID: 8300000, guid: 0f3b84089d5b28044848fe978db843f8, type: 3}
   loadingSFX: {fileID: 8300000, guid: 60d4a1916b7ebcd4c8471b0857cd762b, type: 3}
-  winSFX: {fileID: 0}
+  winSFX: {fileID: 8300000, guid: 22eaa7fe8c0f70a41ba5bd74684e0845, type: 3}
   description: Menor cooldown de escudo

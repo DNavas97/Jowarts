@@ -334,6 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0866e445c95000d40b80cdcbc0944157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mrXSprite: {fileID: 21300000, guid: 8ff2ba5594fb14b4ca60d9bc0ce2ef3c, type: 3}
   _toggleBorder: {fileID: 860730327011818818}
   wizardIcon: {fileID: 133299747535550256}
   _button: {fileID: 8408957505773843860}

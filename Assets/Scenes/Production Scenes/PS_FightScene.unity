@@ -412,7 +412,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1601167271}
   - component: {fileID: 1601167270}
-  - component: {fileID: 1601167269}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -420,14 +419,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1601167269
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601167268}
-  m_Enabled: 1
 --- !u!20 &1601167270
 Camera:
   m_ObjectHideFlags: 0
@@ -5191,6 +5182,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4219093634466673030, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00001335144
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219093634466673030, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00001335144
+      objectReference: {fileID: 0}
     - target: {fileID: 7172988906278660657, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5206,6 +5205,14 @@ PrefabInstance:
     - target: {fileID: 7172988906278660657, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392054150405902392, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00001335144
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392054150405902392, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00001335144
       objectReference: {fileID: 0}
     - target: {fileID: 8407915884943890390, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5311,7 +5318,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8196962488562802456, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1ce96995f860eae459d9dd54c57fa57c, type: 3}
 --- !u!224 &6848790130153614950 stripped
 RectTransform:

@@ -44,7 +44,11 @@ public class FightUIController : MonoBehaviour
         healthBar.UpdateHealthBar(health, player.MaxHealth);
     }
 
-    public void OnGameEnd(Player winner) => _gameOverUI.ShowWithLoser(winner);
+    public void OnGameEnd(Player winner)
+    {
+        _gameOverUI.ShowWithLoser(winner);
+        UpdatePlayersRounds();
+    }
 
     #endregion
 

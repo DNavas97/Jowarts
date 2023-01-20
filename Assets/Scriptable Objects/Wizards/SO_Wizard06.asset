@@ -18,5 +18,5 @@ MonoBehaviour:
   previewPrefab: {fileID: 6096612333018082556, guid: de11e63e7c1e9f847b0f8ca34b56e3b6, type: 3}
   introductionSFX: {fileID: 8300000, guid: 0744695e74a95bf4fb84c10595e2ff76, type: 3}
   loadingSFX: {fileID: 8300000, guid: 19ab9e4531ee9cc4faa2d132b15def1f, type: 3}
-  winSFX: {fileID: 0}
+  winSFX: {fileID: 8300000, guid: 0eb2a2903c4f3fe468bb73ba33f30ac0, type: 3}
   description: Salta mas alto

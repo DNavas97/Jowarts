@@ -18,5 +18,5 @@ MonoBehaviour:
   previewPrefab: {fileID: 1367511944650842080, guid: fd2e6b35538518746963a85337bb4d56, type: 3}
   introductionSFX: {fileID: 8300000, guid: 7bdde2c814bac9040a8ba45b358854ea, type: 3}
   loadingSFX: {fileID: 8300000, guid: 28e1b8ec6e9271a4998711e7cb9b7a74, type: 3}
-  winSFX: {fileID: 0}
+  winSFX: {fileID: 8300000, guid: 7bdde2c814bac9040a8ba45b358854ea, type: 3}
   description: Tiene mas vida

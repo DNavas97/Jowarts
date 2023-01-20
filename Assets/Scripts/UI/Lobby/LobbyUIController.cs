@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Persistent_Data;
@@ -14,6 +15,10 @@ namespace UI.Lobby
         [SerializeField] private Transform _wizardLayout;
         [SerializeField] private GameObject _wizardToggle;
         [SerializeField] private PlayerContent _player1Content, _player2Content;
+
+        [SerializeField] private AudioClip _hoverClip, _selectionClip;
+        
+        private AudioSource _audioSource;
         
         private int _player1SelectedWizard = 0;
         private int _player2SelectedWizard = 1;
@@ -28,6 +33,8 @@ namespace UI.Lobby
         #endregion
 
         #region Unity LifeCycle
+
+        private void Awake() => TryGetComponent(out _audioSource);
 
         private void Start()
         {
@@ -77,12 +84,16 @@ namespace UI.Lobby
             {
                 if (!_lockedWizardP1)   WizardSelectionHorizontalHandle(PlayerID.Player1, horizontalP1Input, _player1SelectedWizard);
                 else if(!_lockedWandP1) WandSelectionHandle(PlayerID.Player1, horizontalP1Input, _player1SelectedWand, _player1Content);
+                
+                _audioSource.PlayOneShot(_hoverClip);
             }
 
             if (horizontalP2Input != 0 && _canP2Input)
             {
                 if (!_lockedWizardP2)    WizardSelectionHorizontalHandle(PlayerID.Player2, horizontalP2Input, _player2SelectedWizard);
                 else if (!_lockedWandP2) WandSelectionHandle(PlayerID.Player2, horizontalP2Input, _player2SelectedWand, _player2Content);
+                
+                _audioSource.PlayOneShot(_hoverClip);
             }
         }
         
@@ -94,11 +105,15 @@ namespace UI.Lobby
                 {
                     _player1Content.OnWizardFixed();
                     _lockedWizardP1 = true;
+                    
+                    _audioSource.PlayOneShot(_selectionClip);
                 }
                 else if (!_lockedWandP1)
                 {
                     _player1Content.OnWandFixed();
                     _lockedWandP1 = true;
+                    
+                    _audioSource.PlayOneShot(_selectionClip);
                 }
             }
             

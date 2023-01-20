@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class PlayerContent : MonoBehaviour
 {
     #region Private Variables
-    
+
+    [SerializeField] private Sprite _mrXSprite;
     [SerializeField] private TextMeshProUGUI _wizardNameText, _wandNameText, _wandInfoNameText, _wandInfoText, wizardInfoText, wizardInfoNameText;
     [SerializeField] private Image _wizardIcon, _wandIcon;
     [SerializeField] private CanvasGroup _leftGroupCanvas, _rightGroupCanvas, _canvasInfo;
@@ -37,7 +38,8 @@ public class PlayerContent : MonoBehaviour
         _wizard = wizard;
         
         var name = wizard.wizardName == WizardDB.WizardName.Gozoso ? "?" : EnumUtils.GetEnumDescription(wizard.wizardName);
-        _wizardIcon.sprite = wizard.wizardIcon;
+        
+        _wizardIcon.sprite = wizard.wizardName == WizardDB.WizardName.Gozoso ? _mrXSprite : wizard.wizardIcon;
         _wizardNameText.text = name;
         
         wizardInfoNameText.text = name;

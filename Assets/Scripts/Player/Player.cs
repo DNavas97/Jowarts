@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private WizardSO _wizardSo;
     private WandSO _wandSo;
     private int _victories;
+    private AudioSource _audioSource;
 
     [SerializeField] private SkinnedMeshRenderer _skr;
     [SerializeField] private MovementController _movementController;
@@ -53,9 +54,10 @@ public class Player : MonoBehaviour
 
     public void Initialize(PlayerID id, FightGameController gc, WizardSO wizard, WandSO wand)
     {
-        PlayerId = id;
+        TryGetComponent(out _audioSource);
         TryGetComponent(out _animationController);
-        
+        PlayerId = id;
+
         _fightGameController = gc;
         _wizardSo = wizard;
         _wandSo = wand;
@@ -105,6 +107,8 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(PrintPlayer(poison));
         CurrentHealth -= damage;
+
+        _audioSource.PlayOneShot(_audioSource.clip);
         
         if (CurrentHealth <= 0)
         {

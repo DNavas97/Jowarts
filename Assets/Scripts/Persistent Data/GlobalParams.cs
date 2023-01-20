@@ -28,12 +28,12 @@ namespace Persistent_Data
 
         #region BaseParams
         
-        public static float BaseFireCooldown       = 1f;
+        public static float BaseFireCooldown       = 0.75f;
         public static float BaseShieldCooldown     = 3f;
         public static float BasePlayerSpeed        = 1.75f;
-        public static float BasePlayerJump         = 7.5f;
+        public static float BasePlayerJump         = 6f;
         public static int   BaseProjectileDamage   = 10;
-        public static float BaseProjectileSpeed    = 3.5f;
+        public static float BaseProjectileSpeed    = 4.5f;
         public static int   BaseInstaKillProb      = 0;
         public static int   BaseResurrections      = 0;
         public static float BaseProjectileSize     = 1f;

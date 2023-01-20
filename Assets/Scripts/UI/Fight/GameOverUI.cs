@@ -131,11 +131,19 @@ public class GameOverUI : MonoBehaviour
             yield return null;
         }
 
+        StartCoroutine(WaitForClipEnd());
         _audioSource.PlayOneShot(_gryffindor);
 
         yield return new WaitForSecondsRealtime(2f);
 
         _canInput = true;
+    }
+
+    private IEnumerator WaitForClipEnd()
+    {        
+        PersistentData.Instance.SetMusicVolume(0.2f);
+        yield return new WaitForSeconds(_gryffindor.length);
+        PersistentData.Instance.SetMusicVolume(1);
     }
     
     #endregion

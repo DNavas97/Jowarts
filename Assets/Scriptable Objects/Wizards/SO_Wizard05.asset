@@ -18,5 +18,5 @@ MonoBehaviour:
   previewPrefab: {fileID: 8551096015008642144, guid: aec8cee2de8b9a34f8ec8c80990a0d7b, type: 3}
   introductionSFX: {fileID: 8300000, guid: ba783506903793a4cb2f6e927c38381a, type: 3}
   loadingSFX: {fileID: 8300000, guid: 0521735bad2fe954597125fc7a3441b7, type: 3}
-  winSFX: {fileID: 0}
+  winSFX: {fileID: 8300000, guid: 8071da84c936b3c49af2b55b2b660120, type: 3}
   description: Sus hechizos son mas grandes

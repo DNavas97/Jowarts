@@ -18,5 +18,5 @@ MonoBehaviour:
   previewPrefab: {fileID: 6483547113816404939, guid: 6f3256b4d4586bc4e983705953b1498a, type: 3}
   introductionSFX: {fileID: 8300000, guid: 2a739998a23702848bc632643e39cc1c, type: 3}
   loadingSFX: {fileID: 8300000, guid: 8c747dd6a97c68e4ba94baf6d8b660e5, type: 3}
-  winSFX: {fileID: 0}
+  winSFX: {fileID: 8300000, guid: c8bb27f941a787e43bfae992304894ae, type: 3}
   description: Es mas veloz

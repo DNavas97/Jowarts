@@ -8,6 +8,7 @@ public class WizardToggle : MonoBehaviour
 {
     #region Private Variables
 
+    [SerializeField] private Sprite _mrXSprite;
     [SerializeField] private Image _toggleBorder, wizardIcon;
     [SerializeField] private Button _button;
     [SerializeField] private Color32 _redColor, _blueColor, _blackColor;
@@ -33,8 +34,8 @@ public class WizardToggle : MonoBehaviour
     public void Initialize(WizardSO wizardSo)
     {
         _wizard = wizardSo;
-        
-        wizardIcon.sprite = wizardSo.wizardIcon;
+
+        wizardIcon.sprite = wizardSo.wizardName == WizardDB.WizardName.Gozoso ? _mrXSprite : wizardSo.wizardIcon;
     }
 
     public void Select(PlayerID playerID)

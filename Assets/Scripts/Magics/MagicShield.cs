@@ -46,8 +46,8 @@ public class MagicShield : MonoBehaviour
         var healAmount = (int)(projectile.GetDamage() * _healMultiplier);
         if (healAmount != 0)
             _player.Heal(healAmount);
-        
-        Destroy(gameObject);
+
+        StartCoroutine(OnCollision());
     }
 
     private IEnumerator DestroyCoroutine()
@@ -57,5 +57,23 @@ public class MagicShield : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private IEnumerator OnCollision()
+    {
+        var t = 0f;
+        var disapearTime = 1f;
+
+        while (t < 1)
+        {
+            t += Time.deltaTime / disapearTime;
+            var size = 1 - t;
+            var scale = transform.localScale * size;
+            transform.localScale = scale;
+            
+            yield return null;
+        }
+        
+        Destroy(gameObject);
+    }
+    
     #endregion
 }

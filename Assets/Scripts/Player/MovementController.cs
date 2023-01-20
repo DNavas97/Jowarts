@@ -53,7 +53,7 @@ public class MovementController : MonoBehaviour
     
     private void InputHandler()
     {
-        if(!_movementEnabled) return;
+        if (!_movementEnabled) return;
         
         JumpHandler();
         MovementHandler();

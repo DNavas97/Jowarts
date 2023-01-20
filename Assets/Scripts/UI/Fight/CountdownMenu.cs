@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -7,12 +8,14 @@ using UnityEngine.UI;
 public class CountdownMenu : MonoBehaviour
 {
     #region Private Variables
-
+    
+    [SerializeField] private AudioClip _readySFX, _fightSFX;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private TextMeshProUGUI _numberText;
     [SerializeField] private Image _gradientImage;
 
     private int _countDownMax = 3;
+    private AudioSource _audioSource;
 
     #endregion
     
@@ -24,8 +27,6 @@ public class CountdownMenu : MonoBehaviour
     
     #region Unity LifeCycle
 
-
-
     #endregion
 
     #region Utility Methods
@@ -34,6 +35,8 @@ public class CountdownMenu : MonoBehaviour
 
     private IEnumerator ShowCoroutine()
     {
+        GetComponent<AudioSource>().PlayOneShot(_readySFX);
+        
         var t = 0f;
         var apppearTime = 0.5f;
 
@@ -62,16 +65,8 @@ public class CountdownMenu : MonoBehaviour
         _numberText.text = "Listos?";
 
         yield return new WaitForSecondsRealtime(1.5f);
-        /*
-        var count = _countDownMax;
-
-        while (count > 0)
-        {
-            _numberText.text = count.ToString();
-            count--;
-            yield return new WaitForSecondsRealtime(1f);
-        }
-        */
+        
+        GetComponent<AudioSource>().PlayOneShot(_fightSFX);
         _numberText.text = "A peliar!";
         
         yield return new WaitForSecondsRealtime(1f);

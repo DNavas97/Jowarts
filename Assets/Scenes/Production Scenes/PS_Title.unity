@@ -338,6 +338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2aa53e65abe924a97d450ec83d7e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fluteFailMusic: {fileID: 8300000, guid: 23331a3e3effbb143a4ebcc32dfd9173, type: 3}
+  _battleMusic: {fileID: 8300000, guid: 575564b2f9d6cc84cb054cab8d395fd7, type: 3}
+  _menuMusic: {fileID: 8300000, guid: 5bddb8b3babda9a4db506b35ee92b98c, type: 3}
   WizardP1: {fileID: 0}
   WizardP2: {fileID: 0}
   WandP1: {fileID: 0}
@@ -354,7 +357,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 68f6b5c8d25aaaa499ea63203128c1be, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -913,6 +916,10 @@ PrefabInstance:
     - target: {fileID: 4195483561140747987, guid: 0512804d677de154bba28e970c8b0ee4, type: 3}
       propertyPath: m_text
       value: Pulsa    para empezar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314536947008241061, guid: 0512804d677de154bba28e970c8b0ee4, type: 3}
+      propertyPath: m_Color.a
+      value: 0.85882354
       objectReference: {fileID: 0}
     - target: {fileID: 9089057273728898476, guid: 0512804d677de154bba28e970c8b0ee4, type: 3}
       propertyPath: m_LocalScale.x

@@ -1,13 +1,18 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(AudioSource))]
 public class MagicSpawner : MonoBehaviour
 {
     #region Private Variables
-    
+
+    [SerializeField] private AudioClip _fireSFX, _shieldSFX;
     [SerializeField] private GameObject _magicProjectilePrefab;
     [SerializeField] private GameObject _redShield, _blueShield;
+
+    private AudioSource _audioSource;
     
     private GameObject _shieldPrefab;
 
@@ -37,7 +42,8 @@ public class MagicSpawner : MonoBehaviour
     #endregion
     
     #region Unity LifeCycle
-    
+
+    private void Awake() => TryGetComponent(out _audioSource);
 
     #endregion
 
@@ -97,6 +103,7 @@ public class MagicSpawner : MonoBehaviour
     private IEnumerator StartFireCooldown()
     {
         _canFire = false;
+        _audioSource.PlayOneShot(_fireSFX);
         
         var t = 0f;
     
@@ -115,6 +122,7 @@ public class MagicSpawner : MonoBehaviour
     private IEnumerator StartShieldCooldown()
     {
         _canShield = false;
+        _audioSource.PlayOneShot(_shieldSFX);
         
         var t = 0f;
     
